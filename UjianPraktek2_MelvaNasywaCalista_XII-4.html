@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calistafel - Jelajahi Wisata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .star-rating { color: #ffc107; }
+        body {
+            background: linear-gradient(135deg, #a8edea 0%, #cc6a89 25%, #ca80b5 50%, #ddd079 75%, #a8edea 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .navbar { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .card { background: rgba(255, 255, 255, 0.95); }
+        .toolbar-btn { transition: all 0.3s ease; }
+        .toolbar-btn:hover { transform: scale(1.05); background-color: rgba(255, 182, 193, 0.2); }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="navbar sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">Calistavel</h1>
+            <div class="hidden md:flex space-x-6">
+                <button id="navHome" class="text-gray-700 hover:text-blue-600 font-medium">Beranda</button>
+                <button id="navSaved" class="text-gray-700 hover:text-blue-600 font-medium">Simpan</button>
+                <button id="navOrders" class="text-gray-700 hover:text-blue-600 font-medium">Pesanan</button>
+                <button id="navAccount" class="text-gray-700 hover:text-blue-600 font-medium">Akun</button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t">
+            <button id="navHomeMobile" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Beranda</button>
+            <button id="navSavedMobile" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Simpan</button>
+            <button id="navOrdersMobile" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Pesanan</button>
+            <button id="navAccountMobile" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Akun</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Home Page -->
+        <div id="homePage" class="page">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Calistavel</h2>
+                <p class="text-white/80">Jelajahi destinasi menarik dengan perjalanan dan gayamu</p>
+            </div>
+
+
+            <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Home Page -->
+        <div id="homePage" class="page">
+            <!-- Toolbar -->
+            <div class="bg-white/80 rounded-lg p-4 mb-8 shadow-md">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Layanan</h2>
+                <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-10 gap-2">
+                    <button id="btnFlights" class="toolbar-btn bg-blue-100 text-blue-800 px-2 py-2 rounded-lg text-sm">Tiket Pesawat</button>
+                    <button id="btnHotels" class="toolbar-btn bg-green-100 text-green-800 px-2 py-2 rounded-lg text-sm">Hotel</button>
+                    <button id="btnTrains" class="toolbar-btn bg-orange-100 text-orange-800 px-2 py-2 rounded-lg text-sm">Tiket Kereta</button>
+                    <button id="btnBuses" class="toolbar-btn bg-purple-100 text-purple-800 px-2 py-2 rounded-lg text-sm">Tiket Bus</button>
+                    <button id="btnPackages" class="toolbar-btn bg-pink-100 text-pink-800 px-2 py-2 rounded-lg text-sm">Paket Wisata</button>
+                    <button id="btnTours" class="toolbar-btn bg-yellow-100 text-yellow-800 px-2 py-2 rounded-lg text-sm">Tours</button>
+                    <button id="btnGift" class="toolbar-btn bg-red-100 text-red-800 px-2 py-2 rounded-lg text-sm">Gift Voucher</button>
+                    <button id="btnWhoosh" class="toolbar-btn bg-indigo-100 text-indigo-800 px-2 py-2 rounded-lg text-sm">Whoosh</button>
+                    <button id="btnGuide" class="toolbar-btn bg-teal-100 text-teal-800 px-2 py-2 rounded-lg text-sm">Panduan Wisata</button>
+                    <button id="btnTaxi" class="toolbar-btn bg-gray-100 text-gray-800 px-2 py-2 rounded-lg text-sm">Taksi</button>
+                </div>
+            </div>
+
+            
+
+            <!-- Search and Filter -->
+            <div class="flex flex-col md:flex-row gap-4 mb-8">
+                <input type="text" id="searchInput" placeholder="Cari berdasarkan nama atau alamat..." class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90">
+                <select id="categoryFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90">
+                    <option value="">Semua Kategori</option>
+                    <option value="Aesthetic">Wisata Alam</option>
+                    <option value="Wifi Kencang">Wisata Pantai</option>
+                    <option value="Cozy">Taman Bermain</option>
+                </select>
+            </div>
+
+            <!-- Grid Cards -->
+            <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards will be rendered here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Saved Page -->
+        <div id="savedPage" class="page hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Tempat Tersimpan</h2>
+                <p class="text-white/80">Daftar wisata yang Anda simpan untuk kunjungan nanti</p>
+            </div>
+            <div id="savedContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Saved items will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Orders Page -->
+        <div id="ordersPage" class="page hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Pesanan Tiket</h2>
+                <p class="text-white/80">Riwayat pemesanan tiket Anda</p>
+            </div>
+            <div id="ordersContainer" class="space-y-4">
+                <!-- Orders will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Account Page -->
+        <div id="accountPage" class="page hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Akun Saya</h2>
+                <p class="text-white/80">Kelola informasi akun Anda</p>
+            </div>
+            <div class="card rounded-lg p-6 max-w-md mx-auto">
+                <div class="text-center">
+                    <img src="download (2).jpg" alt="Avatar" class="w-24 h-24 rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">MnCalista</h3>
+                    <p class="text-gray-600">calistaveldestravel.@gmail.com</p>
+                    <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Edit Profil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data wisata dummy
+        const wisataData = [
+            {
+                id: 1,
+                nama: "Kawah Putih",
+                alamat: "Jl.Kawah Putih,Ciwidey",
+                rating: 4.5,
+                foto: "kawahh.jpg",
+                kategori: "Wisata Alam",
+                harga: "300.000,00"
+            },
+            {
+                id: 2,
+                nama: "Taman Bunga Nusantara",
+                alamat: "Cianjur,Jawa Barat",
+                rating: 5.0,
+                foto: "bungan n s.jpg",
+                kategori: "Wisata Alam",
+                harga: "Rp 50.000"
+            },
+            {
+                id: 3,
+                nama: "Labuan Bajo",
+                alamat: "Nusa tenggara Timur",
+                rating: 4.2,
+                foto: "labuan-bajo.jpg",
+                kategori: "Wisata alam",
+                harga: "Rp 2.500.000"
+            },
+            {
+                id: 4,
+                nama: "Danau Toba",
+                alamat: "Sumatera Utara",
+                rating: 4.3,
+                foto: "labuan bajo.jpg",
+                kategori: "Wisata Alam",
+                harga: "Rp 150.000/night"
+            },
+            {
+                id: 5,
+                nama: "Pantai Nusa Penida",
+                alamat: "Jl. Taman, Yogyakarta",
+                rating: 4.1,
+                foto: "nusa.jpg",
+                kategori: "Wisata Pantai",
+                harga: "Rp 10.000"
+            },
+            {
+                id: 6,
+                nama: "Taman Matahari",
+                alamat: "Bogor",
+                rating: 4.8,
+                foto: "taman matahari.jpg",
+                kategori: "Taman Bermain",
+                harga: "Rp 500.000"
+            },
+            {
+                id: 7,
+                nama: "Taman Ancol",
+                alamat: "Jakarta Utara",
+                rating: 4.4,
+                foto: "ancol.jpg",
+                kategori: "Taman Bermain",
+                harga: "Rp 200.000/night"
+            },
+            {
+                id: 8,
+                nama: "Pantai Parangtritis",
+                alamat: "Bantul, Yogyakarta",
+                rating: 4.0,
+                foto: "pantai.jpg",
+                kategori: "Wisata Pantai",
+                harga: "Gratis"
+            }
+            
+        ];
+
+        let savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+        // Fungsi untuk render kartu
+        function renderCards(data, containerId, showSaveButton = true) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            data.forEach(item => {
+                const stars = '★'.repeat(Math.floor(item.rating)) + '☆'.repeat(5 - Math.floor(item.rating));
+                const isSaved = savedItems.some(saved => saved.id === item.id);
+                const card = `
+                    <div class="card rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <img src="${item.foto}" alt="${item.nama}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">${item.nama}</h3>
+                            <p class="text-gray-600 text-sm mb-2"><strong>Alamat:</strong> ${item.alamat}</p>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-lg">${stars}</div>
+                                <span class="ml-2 text-gray-700 font-bold">${item.rating}</span>
+                            </div>
+                            <p class="text-gray-800 font-semibold mb-2">Harga: ${item.harga}</p>
+                            <span class="inline-block bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-xs mb-3">${item.kategori}</span>
+                            <div class="flex gap-2">
+                                <button class="bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 text-sm">Kunjungi</button>
+                                <button onclick="bookTicket(${item.id})" class="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 text-sm">Pemesanan Tiket</button>
+                                ${showSaveButton ? `<button onclick="toggleSave(${item.id})" class="bg-yellow-600 text-white px-3 py-2 rounded-lg hover:bg-yellow-700 text-sm">${isSaved ? 'Hapus Simpan' : 'Simpan'}</button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Fungsi filter dan pencarian
+        function filterAndSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const filteredData = wisataData.filter(item => {
+                const matchesSearch = item.nama.toLowerCase().includes(searchTerm) || item.alamat.toLowerCase().includes(searchTerm);
+                const matchesCategory = category === '' || item.kategori === category;
+                return matchesSearch && matchesCategory;
+            });
+            renderCards(filteredData, 'cardsContainer');
+        }
+
+        // Fungsi toggle simpan
+        function toggleSave(id) {
+            const item = wisataData.find(w => w.id === id);
+            const index = savedItems.findIndex(s => s.id === id);
+            if (index > -1) {
+                savedItems.splice(index, 1);
+            } else {
+                savedItems.push(item);
+            }
+            localStorage.setItem('savedItems', JSON.stringify(savedItems));
+            renderCards(wisataData, 'cardsContainer');
+            if (document.getElementById('savedPage').classList.contains('hidden') === false) {
+                renderSaved();
+            }
+        }
+
+        // Fungsi pemesanan tiket
+        function bookTicket(id) {
+            const item = wisataData.find(w => w.id === id);
+            orders.push({ ...item, orderDate: new Date().toLocaleDateString() });
+            localStorage.setItem('orders', JSON.stringify(orders));
+            alert(`Tiket untuk ${item.nama} telah dipesan!`);
+            renderOrders();
+        }
+
+        // Render halaman tersimpan
+        function renderSaved() {
+            renderCards(savedItems, 'savedContainer', false);
+        }
+
+        // Render halaman pesanan
+        function renderOrders() {
+            const container = document.getElementById('ordersContainer');
+            container.innerHTML = '';
+            if (orders.length === 0) {
+                container.innerHTML = '<p class="text-white text-center">Belum ada pesanan.</p>';
+                return;
+            }
+            orders.forEach(order => {
+                const orderCard = `
+                    <div class="card rounded-lg p-4">
+                        <h3 class="text-lg font-semibold text-gray-800">${order.nama}</h3>
+                        <p class="text-gray-600">Tanggal Pesan: ${order.orderDate}</p>
+                        <p class="text-gray-600">Harga: ${order.harga}</p>
+                    </div>
+                `;
+                container.innerHTML += orderCard;
+            });
+        }
+
+        // Fungsi switch halaman
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+            if (pageId === 'savedPage') renderSaved();
+            if (pageId === 'ordersPage') renderOrders();
+        }
+
+        // Event listeners navbar
+        document.getElementById('navHome').addEventListener('click', () => showPage('homePage'));
+        document.getElementById('navSaved').addEventListener('click', () => showPage('savedPage'));
+        document.getElementById('navOrders').addEventListener('click', () => showPage('ordersPage'));
+        document.getElementById('navAccount').addEventListener('click', () => showPage('accountPage'));
+
+        // Mobile menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+        document.getElementById('navHomeMobile').addEventListener('click', () => { showPage('homePage'); document.getElementById('mobileMenu').classList.add('hidden'); });
+        document.getElementById('navSavedMobile').addEventListener('click', () => { showPage('savedPage'); document.getElementById('mobileMenu').classList.add('hidden'); });
+        document.getElementById('navOrdersMobile').addEventListener('click', () => { showPage('ordersPage'); document.getElementById('mobileMenu').classList.add('hidden'); });
+        document.getElementById('navAccountMobile').addEventListener('click', () => { showPage('accountPage'); document.getElementById('mobileMenu').classList.add('hidden'); });
+
+        // Event listeners search dan filter
+        document.getElementById('searchInput').addEventListener('input', filterAndSearch);
+        document.getElementById('categoryFilter').addEventListener('change', filterAndSearch);
+
+        // Render awal
+        renderCards(wisataData, 'cardsContainer');
+    </script>
+</body>
+</html>

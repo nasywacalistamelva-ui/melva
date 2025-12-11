@@ -7,34 +7,31 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <title>Portofolio-Data Diri</title>
   </head>
   <body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-light sticky-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
-            <i class="bi bi-mortarboard-fill"></i> IN
-        </a>
+ <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+        <a class="navbar-brand fw-bold" href="#Beranda">
+                <i class="bi bi-mortarboard-fill"></i> MNC
+            </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active text-dark" href="#">Beranda</a>
+                    <a class="nav-link active text-dark" href="#Beranda">Beranda</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link active text-dark" href="#">Tentang </a>
+                    <a class="nav-link active text-dark" href="#Tentang">Tentang </a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link text-dark" href="#"></a>
+                    <a class="nav-link active text-dark" href="#Pengalaman">Pengalaman</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link active text-dark" href="#">Pengalaman</a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link active text-dark" href="#">Kontak</a>
+                    <a class="nav-link active text-dark" href="#Kontak">Kontak</a>
                 </li>
                 <!-- ... item lainnya ... -->
             </ul>
@@ -42,11 +39,11 @@
     </div>
 </nav>
 
-<section class="bg-primary text-white min-vh-100 d-flex align-items-center">
+<section id="Beranda" class="bg-primary text-white min-vh-100 d-flex align-items-center">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 text-center text-lg-start">
-                <img src="IMG_20251106_184644.jpg" width="250px" class="rounded-circle border border-5 border-white shadow-lg">
+                <img src="IMG_20251106_184644.jpg" width="250px" class="rounded-circle border border-5 border-white shadow-lg"> alt="">
             </div>
             <div class="col-lg-6 text-center text-lg-start">
                 <h1 class="display-4 fw-bold">Melva Nasywa Calista</h1>
@@ -63,11 +60,11 @@
     </div>
 </section>
 
-<section class="bg-light py-5">
+<section id="Tentang" class="bg-light py-5">
     <div class="container">
         <div class="my-2">
       <div class="text-center"><h4 class=" display-5 mb-4 fw-bold">
-        <p class="my-3">Tentang Saya.</p></h4></text-center>
+        <p class="my-3">Tentang Saya</p></h4></text-center>
     </div></div>
         <div class="row">
            
@@ -78,7 +75,7 @@
       </h5>
            
                 <span class="badge bg-warning text-dark fw-semibold">
-                    <i class="bi bi-star-fill"></i>pembelajaran
+                    <i class="bi bi-star-fill"></i>Pembelajaran
                 </span>
                 <span class="badge bg-warning text-dark fw-semibold">
                     <i class="bi bi-star-fill"></i>Langkah Awal
@@ -124,16 +121,13 @@
 </section>
 
 
-                    <section class="py-5">
-          <div class="container">
-
-             <div class="text-center"><h4 class=" display-5 mb-4 fw-bold">Pengalaman Akademik</h4></text-center>
+<section id="Pengalaman" class="py-5">
+    <div class="container">
+        <div class="text-center"><h4 class=" display-5 mb-4 fw-bold">Pengalaman Akademik</h4></text-center>
     </div>
       <div class="text-center"><h5 class="mb-5 fw-normal">Aktivitas dan Perjalanan Akademik</h5></text-center>
     </div>
-   
-            <div class="row">
-             
+        <div class="row">
               <div class="col-lg-4 col-md-6">
                 <div class="card h-100 shadow-sm">
                   <img src="Sertifikat Olimpiade Siswa Indonesia (1).jpg" class="card-img-top" alt="">
@@ -163,13 +157,7 @@
                   </div>
                 </div>
               </div>
-
-          
-         
-        </div>
-      </section>
-
-        <section class="mb-4">
+            </div>
           <div class="container">
             <div class="row">
               <div class="col-lg-4 col-md-6">
@@ -214,13 +202,13 @@ Peserta bidang Bahasa Inggris pada Olimpiade Sains Hari Pendidikan Nasional 2024
         </div>
     </div>
 </section>
-
+<section id="Kontak" class="bg-primary text-dark py-5">
+        <div class="container">
 <div class="bg-primary text-white py-5">
   <div class="text-center"><h4 class=" display-5 mb-4 fw-bold">Hubungi Saya</h4></text-center>
     </div>
      <div class="text-center"><h5 class="mb-5 fw-normal">Aktivitas dan Perjalanan Akademik</h5></text-center>
     </div>
-     
      <div class="px-5">
      
 
@@ -307,20 +295,19 @@ Peserta bidang Bahasa Inggris pada Olimpiade Sains Hari Pendidikan Nasional 2024
         <div class="row">
             <div class="col-12 text-center">
                 <div class="d-flex justify-content-center gap-3 mb-3">
-                    <a href="https://www.instagram.com/mlnsywaacl?igsh=MWRhOW85eXNhYTRmOQ==" class="bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
+                    <a href="https://www.instagram.com/mlnsywaacl?igsh=MWRhOW85eXNhYTRmOQ==" class="bg-gray bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
                         <i class="bi bi-instagram fs-5"></i>
-                       
                     </a>
 
-                     <a href="https://youtube.com/@calstasyw?si=nDKVEOplj3KsyHfj" class="bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
-
+                     <a href="https://youtube.com/@calstasyw?si=nDKVEOplj3KsyHfj" class="bg-gray bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
+                        <i class="bi bi-youtube fs-5"></i>
                      </a>
                         <i class="bi bi-facebook fs-5"></i>
                       </a>
-                       <a href="#" class="bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
+                       <a href="#" class="bg-gray bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
                         <i class="bi bi-twitter fs-5"></i>
                       </a>
-                       <a href="https://youtube.com/@calstasyw?si=nDKVEOplj3KsyHfj" class="bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
+                       <a href="https://youtube.com/@calstasyw?si=nDKVEOplj3KsyHfj" class="bg-gray bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-white text-decoration-none" style="width: 45px; height: 45px;">
                         <i class="bi bi-youtube fs-5"></i>
                        </a>
                     <!-- ... ikon lainnya ... -->

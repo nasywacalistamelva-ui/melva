@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolSpace – Ruang Belajar Digital</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy-primary: #1e293b;
+            --navy-dark: #0f172a;
+            --blue-accent: #0284c7;
+            --blue-light: #e0f2fe;
+            --pastel-green: #dcfce7;
+            --pastel-yellow: #fef9c3;
+            --pastel-pink: #ffe4e6;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: #334155;
+            padding-top: 76px;
+        }
+
+        /* Navbar Customization */
+        .navbar-custom {
+            background-color: var(--navy-primary);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: #ffffff !important;
+            letter-spacing: 0.5px;
+        }
+        .nav-link {
+            color: #cbd5e1 !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #38bdf8 !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            color: white;
+            padding: 80px 0;
+            border-radius: 0 0 30px 30px;
+        }
+
+        /* Card Modern Design */
+        .card-custom {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #ffffff;
+            height: 100%;
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Sections Visibility Control */
+        .page-section {
+            display: none;
+        }
+        .page-section.active-section {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Interactive Quiz Styles */
+        .quiz-option {
+            cursor: pointer;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: var(--blue-light);
+            border-color: var(--blue-accent);
+        }
+        .quiz-option.selected {
+            background-color: var(--blue-light);
+            border-color: var(--blue-accent);
+            font-weight: 600;
+        }
+
+        /* Game Word Scramble Boxes */
+        .scramble-letter {
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy-primary);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            margin: 3px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Badges & Achievements */
+        .badge-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 15px;
+        }
+        .badge-unlocked { background: var(--pastel-green); color: #15803d; }
+        .badge-locked { background: #f1f5f9; color: #94a3b8; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" onclick="navigateTo('home')">
+                <i class="fa-solid fa-graduation-cap text-info fs-3"></i>
+                <span>SchoolSpace</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item"><a class="nav-link active" id="nav-home" onclick="navigateTo('home')">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-profile" onclick="navigateTo('profile')">Profil Sekolah</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-materi" onclick="navigateTo('materi')">Materi</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-video" onclick="navigateTo('video')">Video</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-kuis" onclick="navigateTo('kuis')">Kuis</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-game" onclick="navigateTo('game')">Permainan</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-perpustakaan" onclick="navigateTo('perpustakaan')">Perpustakaan</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-berita" onclick="navigateTo('berita')">Berita</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-dashboard" onclick="navigateTo('dashboard')">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION: BERANDA -->
+    <div id="home-section" class="page-section active-section">
+        <div class="hero-section text-center text-md-start">
+            <div class="container">
+                <div class="row align-items-center py-4">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <span class="badge bg-info text-dark px-3 py-2 rounded-pill mb-3 fw-bold">Platform e-Learning Masa Kini</span>
+                        <h1 class="display-4 fw-bold mb-3">Belajar Lebih Seru, Raih Masa Depanmu!</h1>
+                        <p class="lead text-light opacity-75 mb-4">Akses materi interaktif, video pembelajaran, kuis adaptif, dan permainan edukatif kapan saja dan di mana saja dalam satu ruang digital terpadu.</p>
+                        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-start">
+                            <button class="btn btn-info text-dark font-weight-bold px-4 py-2 rounded-pill fw-bold" onclick="navigateTo('materi')"><i class="fa-solid fa-rocket me-2"></i>Mulai Belajar</button>
+                            <button class="btn btn-outline-light px-4 py-2 rounded-pill" onclick="navigateTo('kuis')"><i class="fa-solid fa-gamepad me-2"></i>Uji Kemampuan</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800" class="img-fluid rounded-4 shadow-lg border border-4 border-white opacity-90" alt="Siswa Belajar">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5">
+            <!-- Counter Stats -->
+            <div class="row g-4 text-center mb-5">
+                <div class="col-md-4">
+                    <div class="card card-custom p-4 border-start border-4 border-primary">
+                        <i class="fa-solid fa-book-open text-primary fs-1 mb-2"></i>
+                        <h3 class="fw-bold">120+</h3>
+                        <p class="text-muted mb-0">Materi Pembelajaran Lengkap</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-custom p-4 border-start border-4 border-info">
+                        <i class="fa-solid fa-video text-info fs-1 mb-2"></i>
+                        <h3 class="fw-bold">85+</h3>
+                        <p class="text-muted mb-0">Video Edukasi Embed YouTube</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-custom p-4 border-start border-4 border-success">
+                        <i class="fa-solid fa-trophy text-success fs-1 mb-2"></i>
+                        <h3 class="fw-bold">250+</h3>
+                        <p class="text-muted mb-0">Soal Kuis & Tantangan Interaktif</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Cards -->
+            <h2 class="fw-bold mb-4">Kategori Mata Pelajaran</h2>
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="card card-custom p-3 text-center" onclick="navigateTo('materi')">
+                        <div class="p-3 rounded-circle bg-light d-inline-block mx-auto mb-3 text-primary"><i class="fa-solid fa-calculator fs-2"></i></div>
+                        <h5>Matematika</h5>
+                        <small class="text-muted">24 Modul & Kuis</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-custom p-3 text-center" onclick="navigateTo('materi')">
+                        <div class="p-3 rounded-circle bg-light d-inline-block mx-auto mb-3 text-success"><i class="fa-solid fa-flask fs-2"></i></div>
+                        <h5>IPA & Sains</h5>
+                        <small class="text-muted">18 Modul & Kuis</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-custom p-3 text-center" onclick="navigateTo('materi')">
+                        <div class="p-3 rounded-circle bg-light d-inline-block mx-auto mb-3 text-warning"><i class="fa-solid fa-globe fs-2"></i></div>
+                        <h5>Bahasa Inggris</h5>
+                        <small class="text-muted">30 Modul & Video</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-custom p-3 text-center" onclick="navigateTo('materi')">
+                        <div class="p-3 rounded-circle bg-light d-inline-block mx-auto mb-3 text-danger"><i class="fa-solid fa-laptop-code fs-2"></i></div>
+                        <h5>Informatika</h5>
+                        <small class="text-muted">15 Modul & Praktik</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: PROFIL SEKOLAH -->
+    <div id="profile-section" class="page-section container py-4">
+        <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Profil Sekolah</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-8">
+                <div class="card card-custom p-4">
+                    <h4 class="fw-bold text-primary mb-3">Sejarah & Perjalanan</h4>
+                    <p>Berdiri sejak tahun 2005, <strong>SchoolSpace Academy</strong> bertekad menghadirkan pendidikan berkualitas berbasis teknologi digital modern. Melalui komitmen tanpa henti, sekolah ini memadukan kurikulum akademik yang tangguh dengan keterampilan abad ke-21.</p>
+                    
+                    <h4 class="fw-bold text-primary mt-4 mb-3">Visi dan Misi</h4>
+                    <p><strong>Visi:</strong> Menjadi lembaga pendidikan terdepan yang menghasilkan generasi berkarakter, inovatif, dan unggul dalam era digital global.</p>
+                    <p><strong>Misi:</strong></p>
+                    <ul>
+                        <li>Menyelenggarakan pembelajaran berbasis teknologi yang interaktif dan menyenangkan.</li>
+                        <li>Memfasilitasi pengembangan minat dan bakat peserta didik melalui ekstrakurikuler unggulan.</li>
+                        <li>Menanamkan nilai-nilai etik, integritas, dan literasi digital yang sehat.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom p-4 text-center">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400" class="rounded-circle mx-auto mb-3 img-thumbnail" style="width: 130px; height: 130px; object-fit: cover;" alt="Kepala Sekolah">
+                    <h5 class="fw-bold">Dr. Hendra Wijaya, M.Pd.</h5>
+                    <small class="text-muted d-block mb-3">Kepala Sekolah</small>
+                    <p class="fst-italic text-muted small">"Selamat datang di SchoolSpace. Mari manfaatkan platform digital ini untuk memperluas cakrawala pengetahuan tanpa batas."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: MATERI PEMBELAJARAN -->
+    <div id="materi-section" class="page-section container py-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+            <h2 class="fw-bold border-start border-4 border-primary ps-3 mb-0">Materi Pembelajaran</h2>
+            <div class="d-flex gap-2">
+                <input type="text" id="search-materi" class="form-control" placeholder="Cari materi..." onkeyup="filterMateri()">
+            </div>
+        </div>
+
+        <div class="row g-4" id="materi-grid">
+            <!-- Card Materi 1 -->
+            <div class="col-md-4 materi-card" data-title="Matematika: Aljabar Dasar">
+                <div class="card card-custom overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=500" class="card-img-top" style="height: 180px; object-fit: cover;" alt="Matematika">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-start">Kelas X • Matematika</span>
+                        <h5 class="fw-bold">Persamaan & Pertidaksamaan Aljabar</h5>
+                        <p class="text-muted small">Memahami variabel, koefisien, dan metode penyelesaian persamaan linier secara intuitif.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+                            <small class="text-muted"><i class="fa-regular fa-clock me-1"></i> 45 Menit</small>
+                            <button class="btn btn-sm btn-primary" onclick="bukaMateri('Aljabar Dasar', 'Aljabar adalah cabang matematika yang mempelajari simbol-simbol matematika dan aturan untuk memanipulasi simbol-simbol tersebut. Contoh sederhana: Jika 2x + 4 = 10, maka nilai x adalah 3.')">Pelajari <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Materi 2 -->
+            <div class="col-md-4 materi-card" data-title="Fisika: Hukum Newton">
+                <div class="card card-custom overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=500" class="card-img-top" style="height: 180px; object-fit: cover;" alt="Fisika">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <span class="badge bg-success-subtle text-success mb-2 align-self-start">Kelas XI • IPA</span>
+                        <h5 class="fw-bold">Hukum Motion & Dinamika Newton</h5>
+                        <p class="text-muted small">Konsep Inersia, Hukum F=ma, dan Aksi-Reaksi dalam kehidupan sehari-hari.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+                            <small class="text-muted"><i class="fa-regular fa-clock me-1"></i> 60 Menit</small>
+                            <button class="btn btn-sm btn-primary" onclick="bukaMateri('Hukum Newton', 'Hukum I Newton menyatakan bahwa benda akan tetap diam atau bergerak lurus beraturan jika tidak ada gaya luar yang bekerja padanya. F = m * a adalah inti dari Hukum II Newton.')">Pelajari <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Materi 3 -->
+            <div class="col-md-4 materi-card" data-title="Informatika: Dasardasar HTML & CSS">
+                <div class="card card-custom overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=500" class="card-img-top" style="height: 180px; object-fit: cover;" alt="Koding">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <span class="badge bg-warning-subtle text-dark mb-2 align-self-start">Semua Kelas • TIK</span>
+                        <h5 class="fw-bold">Pengenalan HTML & CSS Modern</h5>
+                        <p class="text-muted small">Belajar membangun struktur halaman web dan merancang tampilan visual yang menawan.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+                            <small class="text-muted"><i class="fa-regular fa-clock me-1"></i> 90 Menit</small>
+                            <button class="btn btn-sm btn-primary" onclick="bukaMateri('Pengenalan Web', 'HTML (HyperText Markup Language) digunakan untuk membangun kerangka web, sedangkan CSS digunakan untuk mengatur tata letak, warna, dan gaya visual.')">Pelajari <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: VIDEO PEMBELAJARAN -->
+    <div id="video-section" class="page-section container py-4">
+        <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Video Pembelajaran Interaktif</h2>
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="card card-custom p-3">
+                    <div class="ratio ratio-16x9 rounded-3 overflow-hidden mb-3">
+                        <iframe id="main-video-player" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Pembelajaran" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="fw-bold" id="video-title">Pentingnya Literasi Digital di Era Moden</h4>
+                    <p class="text-muted" id="video-desc">Simak pembahasan mendalam mengenai kebiasaan aman berselancar di internet dan memanfaatkan perangkat teknologi secara bijak.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5 class="fw-bold mb-3">Daftar Video Lainnya</h5>
+                <div class="d-flex flex-column gap-3">
+                    <div class="card card-custom p-2 d-flex flex-row align-items-center gap-3" style="cursor:pointer;" onclick="playVideo('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Pentingnya Literasi Digital', 'Panduan singkat meningkatkan kecakapan digital di lingkungan sekolah.')">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=200" class="rounded" style="width: 80px; height: 60px; object-fit: cover;" alt="Thumb">
+                        <div>
+                            <h6 class="fw-bold mb-1 small">Literasi Digital</h6>
+                            <small class="text-muted"><i class="fa-regular fa-clock"></i> 05:20</small>
+                        </div>
+                    </div>
+                    <div class="card card-custom p-2 d-flex flex-row align-items-center gap-3" style="cursor:pointer;" onclick="playVideo('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Trik Cepat Aljabar', 'Metode mudah menyelesaikan soal matematika tanpa pusing.')">
+                        <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?q=80&w=200" class="rounded" style="width: 80px; height: 60px; object-fit: cover;" alt="Thumb">
+                        <div>
+                            <h6 class="fw-bold mb-1 small">Trik Cepat Aljabar</h6>
+                            <small class="text-muted"><i class="fa-regular fa-clock"></i> 08:15</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: KUIS INTERAKTIF -->
+    <div id="kuis-section" class="page-section container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-custom p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-primary px-3 py-2" id="quiz-progress-text">Soal 1 dari 3</span>
+                        <span class="text-danger fw-bold" id="quiz-timer"><i class="fa-regular fa-clock me-1"></i> 00:30</span>
+                    </div>
+
+                    <div id="quiz-container">
+                        <h5 class="fw-bold mb-4" id="quiz-question-text">Loading Soal...</h5>
+                        <div id="quiz-options-container"></div>
+                        <button class="btn btn-primary w-100 mt-4 py-2 rounded-pill fw-bold" id="btn-next-quiz" onclick="nextQuestion()" disabled>Lanjut ke Soal Berikutnya</button>
+                    </div>
+
+                    <!-- Quiz Result View -->
+                    <div id="quiz-result" class="text-center py-4 d-none">
+                        <i class="fa-solid fa-award text-warning display-1 mb-3"></i>
+                        <h3 class="fw-bold">Kuis Selesai!</h3>
+                        <p class="lead" id="quiz-score-text">Skor Anda: 0 / 100</p>
+                        <p class="text-muted" id="quiz-feedback"></p>
+                        <button class="btn btn-primary px-4 py-2 rounded-pill fw-bold" onclick="resetQuiz()">Ulangi Kuis</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: PERMAINAN EDUKASI -->
+    <div id="game-section" class="page-section container py-4">
+        <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Permainan Edukasi: Susun Kata</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-custom p-4 text-center">
+                    <span class="badge bg-warning text-dark mb-3 align-self-center px-3 py-2 fw-bold">Level 1: Istilah Teknologi</span>
+                    <p class="text-muted mb-2">Petunjuk: Bahasa pemrograman utama untuk membangun struktur dasar halaman web.</p>
+                    
+                    <div class="my-4" id="scramble-letters-container"></div>
+                    
+                    <div class="input-group mb-3">
+                        <input type="text" id="game-answer-input" class="form-control text-center text-uppercase fw-bold" placeholder="Ketik Jawaban di Sini">
+                        <button class="btn btn-success fw-bold" onclick="checkGameAnswer()">Kirim</button>
+                    </div>
+                    <div id="game-feedback" class="fw-bold mt-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: PERPUSTAKAAN DIGITAL -->
+    <div id="perpustakaan-section" class="page-section container py-4">
+        <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Perpustakaan Digital</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-custom p-4 text-center">
+                    <i class="fa-solid fa-file-pdf text-danger display-4 mb-3"></i>
+                    <h5 class="fw-bold">Modul Ringkas Fisika XI</h5>
+                    <p class="text-muted small">PDF • 2.4 MB</p>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="alert('Mengunduh Modul Ringkas Fisika XI...')"><i class="fa-solid fa-download me-1"></i> Unduh File</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom p-4 text-center">
+                    <i class="fa-solid fa-file-pdf text-danger display-4 mb-3"></i>
+                    <h5 class="fw-bold">Rangkuman Rumus Matematika</h5>
+                    <p class="text-muted small">PDF • 1.8 MB</p>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="alert('Mengunduh Rangkuman Rumus Matematika...')"><i class="fa-solid fa-download me-1"></i> Unduh File</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: BERITA & PENGUMUMAN -->
+    <div id="berita-section" class="page-section container py-4">
+        <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Berita & Pengumuman Sekolah</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card card-custom overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Agenda">
+                    <div class="card-body p-4">
+                        <small class="text-primary fw-bold">28 Oktober 2026</small>
+                        <h4 class="fw-bold mt-1">Jadwal Ujian Tengah Semester (UTS)</h4>
+                        <p class="text-muted">Pelaksanaan UTS Semester Ganjil akan dimulai secara serentak melalui platform SchoolSpace pada minggu depan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: DASHBOARD SISWA -->
+    <div id="dashboard-section" class="page-section container py-4">
+        <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Dashboard Progres Siswa</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-custom p-4 text-center">
+                    <div class="badge-icon badge-unlocked mx-auto">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h5 class="fw-bold">Pembelajar Aktif</h5>
+                    <p class="text-muted small">Menyelesaikan minimal 3 modul materi minggu ini.</p>
+                    <span class="badge bg-success">Lencana Terbuka</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card card-custom p-4">
+                    <h5 class="fw-bold mb-3">Progres Kuis & Poin</h5>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Total Poin Belajar</span>
+                                <span class="fw-bold" id="total-points-display">150 Poin</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted small">Tingkatkan skor kuis dan mainkan permainan edukasi untuk membuka lencana baru!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MATERI DETAIL -->
+    <div class="modal fade" id="materiModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-header-title fw-bold" id="modal-materi-title">Detail Materi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modal-materi-body">
+                    <!-- Dynamic Text -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="tambahPoin(50)">Tandai Selesai (+50 Poin)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- App Logic JavaScript -->
+    <script>
+        // Single Page Navigation Function
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-section'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+            const targetSection = document.getElementById(sectionId + '-section');
+            const targetNav = document.getElementById('nav-' + sectionId);
+
+            if (targetSection) targetSection.classList.add('active-section');
+            if (targetNav) targetNav.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Filter Materi Search
+        function filterMateri() {
+            let input = document.getElementById('search-materi').value.toLowerCase();
+            let cards = document.querySelectorAll('.materi-card');
+
+            cards.forEach(card => {
+                let title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Open Modal Materi
+        function bukaMateri(title, content) {
+            document.getElementById('modal-materi-title').innerText = title;
+            document.getElementById('modal-materi-body').innerText = content;
+            let modal = new bootstrap.Modal(document.getElementById('materiModal'));
+            modal.show();
+        }
+
+        // Video Player Switcher
+        function playVideo(url, title, desc) {
+            document.getElementById('main-video-player').src = url;
+            document.getElementById('video-title').innerText = title;
+            document.getElementById('video-desc').innerText = desc;
+        }
+
+        // Interactive Quiz Data & Engine
+        const quizData = [
+            {
+                question: "Berapakah hasil dari 12 + (3 x 5)?",
+                options: ["27", "75", "45", "30"],
+                answer: 0
+            },
+            {
+                question: "Hukum Newton yang menjelaskan tentang aksi-reaksi adalah...",
+                options: ["Hukum I Newton", "Hukum II Newton", "Hukum III Newton", "Hukum Gravitasi"],
+                answer: 2
+            },
+            {
+                question: "Elemen HTML mana yang digunakan untuk membuat judul utama?",
+                options: ["<p>", "<h1>", "<a>", "<div>"],
+                answer: 1
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let selectedOption = null;
+        let score = 0;
+
+        function loadQuizQuestion() {
+            selectedOption = null;
+            document.getElementById('btn-next-quiz').disabled = true;
+
+            const current = quizData[currentQuizIndex];
+            document.getElementById('quiz-progress-text').innerText = `Soal ${currentQuizIndex + 1} dari ${quizData.length}`;
+            document.getElementById('quiz-question-text').innerText = current.question;
+
+            const optionsContainer = document.getElementById('quiz-options-container');
+            optionsContainer.innerHTML = '';
+
+            current.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option';
+                div.innerText = opt;
+                div.onclick = () => selectQuizOption(div, idx);
+                optionsContainer.appendChild(div);
+            });
+        }
+
+        function selectQuizOption(element, index) {
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedOption = index;
+            document.getElementById('btn-next-quiz').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (selectedOption === quizData[currentQuizIndex].answer) {
+                score += 100 / quizData.length;
+            }
+
+            currentQuizIndex++;
+            if (currentQuizIndex < quizData.length) {
+                loadQuizQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-container').classList.add('d-none');
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.classList.remove('d-none');
+
+            const finalScore = Math.round(score);
+            document.getElementById('quiz-score-text').innerText = `Skor Anda: ${finalScore} / 100`;
+
+            if (finalScore >= 70) {
+                document.getElementById('quiz-feedback').innerText = "Hebat, kamu berhasil menguasai materi ini!";
+                tambahPoin(100);
+            } else {
+                document.getElementById('quiz-feedback').innerText = "Ayo pelajari lagi materinya dan coba lagi!";
+            }
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            score = 0;
+            document.getElementById('quiz-container').classList.remove('d-none');
+            document.getElementById('quiz-result').classList.add('d-none');
+            loadQuizQuestion();
+        }
+
+        // Word Scramble Game Engine
+        const targetWord = "HTML";
+        function initGame() {
+            const container = document.getElementById('scramble-letters-container');
+            container.innerHTML = '';
+            const shuffled = ["T", "M", "H", "L"];
+
+            shuffled.forEach(letter => {
+                const span = document.createElement('span');
+                span.className = 'scramble-letter';
+                span.innerText = letter;
+                container.appendChild(span);
+            });
+        }
+
+        function checkGameAnswer() {
+            const userAns = document.getElementById('game-answer-input').value.toUpperCase().trim();
+            const feedback = document.getElementById('game-feedback');
+
+            if (userAns === targetWord) {
+                feedback.className = "fw-bold mt-2 text-success";
+                feedback.innerText = "Selamat! Jawaban Anda Benar (+50 Poin)";
+                tambahPoin(50);
+            } else {
+                feedback.className = "fw-bold mt-2 text-danger";
+                feedback.innerText = "Jawaban belum tepat, coba lagi!";
+            }
+        }
+
+        // Gamification Points System
+        let userPoints = 150;
+        function tambahPoin(val) {
+            userPoints += val;
+            document.getElementById('total-points-display').innerText = `${userPoints} Poin`;
+            alert(`Selamat! Anda mendapatkan ${val} poin!`);
+        }
+
+        // Initialize Application
+        window.onload = function() {
+            loadQuizQuestion();
+            initGame();
+        };
+    </script>
+</body>
+</html>

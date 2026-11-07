@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NETSPACE | TKJ Learning Hub</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <div class="brand-logo">
+            <i class="bi bi-router-fill"></i>
+        </div>
+        <div>
+            <h4>NETSPACE</h4>
+            <small>TKJ LEARNING HUB</small>
+        </div>
+    </div>
+
+    <div class="nav-heading">LEARNING SPACE</div>
+
+    <button class="nav-item active" data-page="home">
+        <i class="bi bi-grid-fill"></i>
+        <span>Home</span>
+    </button>
+
+    <button class="nav-item" data-page="school">
+        <i class="bi bi-building"></i>
+        <span>Profil Sekolah</span>
+    </button>
+
+    <button class="nav-item" data-page="explore">
+        <i class="bi bi-compass"></i>
+        <span>Explore</span>
+    </button>
+
+    <button class="nav-item" data-page="lab">
+        <i class="bi bi-pc-display"></i>
+        <span>Tech Lab</span>
+    </button>
+
+    <button class="nav-item" data-page="challenge">
+        <i class="bi bi-trophy"></i>
+        <span>Challenge</span>
+    </button>
+
+    <div class="nav-heading">STUDENT TOOLS</div>
+
+    <button class="nav-item" data-page="attendance">
+        <i class="bi bi-qr-code-scan"></i>
+        <span>Smart Attendance</span>
+    </button>
+
+    <button class="nav-item" data-page="passport">
+        <i class="bi bi-person-vcard"></i>
+        <span>My Passport</span>
+    </button>
+
+    <div class="sidebar-bottom">
+        <div class="sidebar-card">
+            <i class="bi bi-lightbulb"></i>
+            <h6>Keep Learning!</h6>
+            <p>Upgrade your skills and build your future.</p>
+        </div>
+        <small>© 2026 NETSPACE</small>
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+        <div class="d-flex align-items-center gap-3">
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div>
+                <small class="breadcrumb">NETSPACE / LEARNING HUB</small>
+                <h5 id="pageTitle">Home Dashboard</h5>
+            </div>
+
+        </div>
+
+        <div class="topbar-right">
+
+            <div class="date-display">
+                <i class="bi bi-calendar3"></i>
+                <span id="currentDate"></span>
+            </div>
+
+            <div class="profile-mini" onclick="showPage('passport')">
+                <div class="avatar" id="topAvatar">S</div>
+                <div class="profile-mini-text">
+                    <b id="topName">Siswa TKJ</b>
+                    <small id="topClass">XI TKJ</small>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="page-container">
+
+        <!-- HOME -->
+        <section class="page active" id="home">
+
+            <div class="welcome-banner">
+
+                <div class="welcome-content">
+
+                    <span class="welcome-tag">
+                        <i class="bi bi-stars"></i>
+                        DIGITAL LEARNING PLATFORM
+                    </span>
+
+                    <h1>
+                        Hello, <span id="welcomeName">Student!</span>
+                        <br>
+                        Ready to Explore Technology?
+                    </h1>
+
+                    <p>
+                        Pelajari dunia jaringan komputer, praktikkan
+                        kemampuanmu, dan jadilah generasi digital yang kreatif.
+                    </p>
+
+                    <button class="btn-primary-custom" onclick="showPage('explore')">
+                        Start Learning
+                        <i class="bi bi-arrow-right"></i>
+                    </button>
+
+                </div>
+
+                <div class="welcome-illustration">
+                    <i class="bi bi-router-fill router-icon"></i>
+                    <span class="floating-icon icon-one"><i class="bi bi-wifi"></i></span>
+                    <span class="floating-icon icon-two"><i class="bi bi-globe2"></i></span>
+                    <span class="floating-icon icon-three"><i class="bi bi-cpu"></i></span>
+                </div>
+
+                <div class="banner-decoration"></div>
+
+            </div>
+
+
+            <!-- STATISTIK -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon blue">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                        </div>
+                        <span>MY EXPERIENCE</span>
+                    </div>
+                    <h2 id="xpValue">120 XP</h2>
+                    <small>Total experience points</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon cyan">
+                            <i class="bi bi-journal-check"></i>
+                        </div>
+                        <span>COMPLETED</span>
+                    </div>
+                    <h2 id="completedValue">0</h2>
+                    <small>Materi terselesaikan</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon purple">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <span>LEARNING PROGRESS</span>
+                    </div>
+                    <h2 id="progressValue">0%</h2>
+                    <small>Progres pembelajaran</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon orange">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <span>ATTENDANCE</span>
+                    </div>
+                    <h2 id="attendanceValue">0</h2>
+                    <small>Total kehadiran</small>
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+            <div class="content-grid">
+
+                <div class="content-card progress-card">
+
+                    <div class="section-header">
+                        <div>
+                            <span class="section-label">YOUR JOURNEY</span>
+                            <h3>Learning Progress</h3>
+                        </div>
+                        <i class="bi bi-bar-chart-line"></i>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>Overall Progress</span>
+                        <b id="progressText">0%</b>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+
+                    <p>Terus tingkatkan kemampuan TKJ-mu!</p>
+
+                </div>
+
+
+                <div class="content-card mission-card">
+
+                    <div class="section-header">
+                        <div>
+                            <span class="section-label">DAILY MISSION</span>
+                            <h3>Misi Hari Ini</h3>
+                        </div>
+                        <i class="bi bi-flag"></i>
+                    </div>
+
+                    <h4>Explore the Network!</h4>
+
+                    <p>Selesaikan satu materi jaringan komputer hari ini.</p>
+
+                    <button class="btn-outline-custom" onclick="showPage('explore')">
+                        Lihat Misi <i class="bi bi-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MATERI -->
+            <div class="section-header section-space">
+                <div>
+                    <span class="section-label">START YOUR JOURNEY</span>
+                    <h3>Recommended Learning</h3>
+                </div>
+
+                <button class="text-link" onclick="showPage('explore')">
+                    Explore All <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="course-grid" id="homeCourses"></div>
+
+
+            <!-- AKTIVITAS -->
+            <div class="section-header section-space">
+                <div>
+                    <span class="section-label">YOUR ACTIVITY</span>
+                    <h3>Recent Activities</h3>
+                </div>
+            </div>
+
+            <div class="content-card" id="activityList"></div>
+
+        </section>
+
+
+        <!-- PROFIL SEKOLAH -->
+        <section class="page" id="school">
+
+            <div class="page-heading">
+                <span class="section-label">ABOUT OUR SCHOOL</span>
+                <h2>Profil Sekolah</h2>
+                <p>Mengenal lebih dekat lingkungan pendidikan SMKN 1 Garut.</p>
+            </div>
+
+            <div class="school-hero">
+                <div>
+                    <span>VOCATIONAL EDUCATION</span>
+                    <h1>SMK NEGERI 1 GARUT</h1>
+                    <p>
+                        Membangun generasi kompeten, kreatif, dan siap
+                        menghadapi perkembangan teknologi.
+                    </p>
+                    <a href="https://smknegeri1garut.sch.id/"
+                       target="_blank" class="btn-primary-custom">
+                        Website Sekolah
+                        <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                </div>
+                <i class="bi bi-mortarboard-fill school-icon"></i>
+            </div>
+
+            <div class="info-grid">
+
+                <div class="content-card">
+                    <div class="info-icon"><i class="bi bi-clock-history"></i></div>
+                    <h3>Sejarah Sekolah</h3>
+                    <p>Tambahkan sejarah resmi SMKN 1 Garut berdasarkan informasi dari pihak sekolah.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="info-icon"><i class="bi bi-bullseye"></i></div>
+                    <h3>Visi Sekolah</h3>
+                    <p>Masukkan visi resmi sekolah untuk memperkenalkan arah dan tujuan pendidikan.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="info-icon"><i class="bi bi-list-check"></i></div>
+                    <h3>Misi Sekolah</h3>
+                    <p>Tambahkan misi sekolah sesuai dokumen resmi SMKN 1 Garut.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="info-icon"><i class="bi bi-building"></i></div>
+                    <h3>Fasilitas</h3>
+                    <p>Kenali fasilitas pembelajaran, ruang praktik, laboratorium, dan sarana sekolah.</p>
+                </div>
+
+            </div>
+
+            <div class="content-card">
+                <span class="section-label">TECHNOLOGY DEPARTMENT</span>
+                <h3>Teknik Komputer dan Jaringan</h3>
+                <p>
+                    TKJ mempelajari instalasi, konfigurasi, pemeliharaan,
+                    serta troubleshooting perangkat dan jaringan komputer.
+                </p>
+
+                <div class="skill-tags">
+                    <span>Computer Networking</span>
+                    <span>Hardware</span>
+                    <span>Server Administration</span>
+                    <span>Network Security</span>
+                    <span>Troubleshooting</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- EXPLORE -->
+        <section class="page" id="explore">
+
+            <div class="page-heading">
+                <span class="section-label">DISCOVER & LEARN</span>
+                <h2>Explore Learning</h2>
+                <p>Temukan materi, video, dan informasi teknologi terbaru.</p>
+            </div>
+
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="searchMaterial"
+                        placeholder="Cari materi TKJ...">
+                </div>
+
+                <select id="categoryFilter">
+                    <option value="all">Semua kategori</option>
+                    <option value="Fundamental">Fundamental</option>
+                    <option value="Networking">Networking</option>
+                    <option value="Security">Security</option>
+                </select>
+            </div>
+
+            <div class="course-grid" id="exploreCourses"></div>
+
+            <div class="section-header section-space">
+                <div>
+                    <span class="section-label">WATCH & UNDERSTAND</span>
+                    <h3>Video Learning</h3>
+                </div>
+            </div>
+
+            <div class="info-grid">
+
+                <a class="resource-card"
+                   href="https://www.youtube.com/results?search_query=belajar+jaringan+komputer+dasar"
+                   target="_blank">
+                    <i class="bi bi-play-circle-fill"></i>
+                    <h4>Dasar Jaringan Komputer</h4>
+                    <p>Pelajari konsep jaringan komputer melalui video.</p>
+                    <span>Watch Video <i class="bi bi-arrow-up-right"></i></span>
+                </a>
+
+                <a class="resource-card"
+                   href="https://www.youtube.com/results?search_query=belajar+subnetting"
+                   target="_blank">
+                    <i class="bi bi-play-circle-fill"></i>
+                    <h4>IP Address & Subnetting</h4>
+                    <p>Memahami alamat IP dan pembagian jaringan.</p>
+                    <span>Watch Video <i class="bi bi-arrow-up-right"></i></span>
+                </a>
+
+            </div>
+
+            <div class="section-header section-space">
+                <div>
+                    <span class="section-label">TECHNOLOGY UPDATE</span>
+                    <h3>Tech News & Resources</h3>
+                </div>
+            </div>
+
+            <div class="info-grid">
+
+                <a class="resource-card"
+                   href="https://www.cloudflare.com/learning/"
+                   target="_blank">
+                    <i class="bi bi-globe2"></i>
+                    <h4>Cloudflare Learning</h4>
+                    <p>Informasi internet, jaringan, dan keamanan.</p>
+                    <span>Explore <i class="bi bi-arrow-up-right"></i></span>
+                </a>
+
+                <a class="resource-card"
+                   href="https://www.cisco.com/"
+                   target="_blank">
+                    <i class="bi bi-router-fill"></i>
+                    <h4>Cisco Technology</h4>
+                    <p>Jelajahi dunia networking dan teknologi.</p>
+                    <span>Explore <i class="bi bi-arrow-up-right"></i></span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- TECH LAB -->
+        <section class="page" id="lab">
+
+            <div class="page-heading">
+                <span class="section-label">EXPERIMENT & PRACTICE</span>
+                <h2>Tech Lab</h2>
+                <p>Belajar jaringan komputer dengan simulasi interaktif.</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card">
+
+                    <span class="section-label">VIRTUAL LAB</span>
+                    <h3>Network Topology</h3>
+
+                    <p>Kenali hubungan perangkat dalam jaringan lokal.</p>
+
+                    <div class="network-topology">
+
+                        <div class="network-device">
+                            <i class="bi bi-router-fill"></i>
+                            <span>Router</span>
+                        </div>
+
+                        <div class="network-connector"></div>
+
+                        <div class="network-device">
+                            <i class="bi bi-hdd-stack-fill"></i>
+                            <span>Switch</span>
+                        </div>
+
+                        <div class="network-connector"></div>
+
+                        <div class="network-device">
+                            <i class="bi bi-pc-display"></i>
+                            <span>PC</span>
+                        </div>
+
+                    </div>
+
+                    <div class="notice">
+                        <i class="bi bi-info-circle"></i>
+                        Simulasi visual konsep jaringan.
+                    </div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <span class="section-label">NETWORK SIMULATOR</span>
+                    <h3>Ping Simulator</h3>
+
+                    <p>Simulasikan pemeriksaan koneksi antarperangkat.</p>
+
+                    <label class="form-label">Alamat IP tujuan</label>
+
+                    <input type="text" class="form-control custom-input"
+                        id="pingIP" value="192.168.1.1">
+
+                    <button class="btn-primary-custom mt-3"
+                        onclick="runPing()">
+                        <i class="bi bi-terminal"></i>
+                        Run Simulation
+                    </button>
+
+                    <div class="terminal" id="pingResult">
+                        <span>NETSPACE TERMINAL</span>
+                        <p>Waiting for command...</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content-card section-space">
+
+                <span class="section-label">IP ADDRESS TOOL</span>
+                <h3>IP Address Explorer</h3>
+
+                <p>Masukkan IP untuk melihat informasi alamat IPv4.</p>
+
+                <div class="ip-tool">
+                    <input type="text" class="form-control custom-input"
+                        id="ipInput" placeholder="Contoh: 192.168.1.10">
+
+                    <button class="btn-primary-custom" onclick="checkIP()">
+                        Check IP
+                    </button>
+                </div>
+
+                <div id="ipResult" class="result-box">
+                    Hasil pemeriksaan akan muncul di sini.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CHALLENGE -->
+        <section class="page" id="challenge">
+
+            <div class="page-heading">
+                <span class="section-label">LEVEL UP YOUR SKILLS</span>
+                <h2>Challenge Zone</h2>
+                <p>Uji kemampuanmu melalui kuis dan misi teknologi.</p>
+            </div>
+
+            <div class="challenge-banner">
+                <i class="bi bi-trophy-fill"></i>
+                <div>
+                    <h3>Ready for the Challenge?</h3>
+                    <p>Jawab pertanyaan dan kumpulkan XP untuk meningkatkan levelmu.</p>
+                </div>
+            </div>
+
+            <div class="info-grid">
+
+                <div class="content-card challenge-card">
+                    <div class="info-icon"><i class="bi bi-patch-question"></i></div>
+                    <h3>TKJ Quiz</h3>
+                    <p>Uji pengetahuanmu tentang jaringan komputer.</p>
+                    <button class="btn-primary-custom" onclick="startQuiz()">
+                        Mulai Kuis
+                    </button>
+                </div>
+
+                <div class="content-card challenge-card">
+                    <div class="info-icon"><i class="bi bi-flag-fill"></i></div>
+                    <h3>Tech Mission</h3>
+                    <p>Selesaikan tantangan dan dapatkan pengalaman baru.</p>
+                    <button class="btn-primary-custom" onclick="startMission()">
+                        Lihat Misi
+                    </button>
+                </div>
+
+                <div class="content-card challenge-card">
+                    <div class="info-icon"><i class="bi bi-controller"></i></div>
+                    <h3>Mini Game</h3>
+                    <p>Asah pengetahuan dengan permainan singkat.</p>
+                    <button class="btn-primary-custom" onclick="startGame()">
+                        Play Game
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="content-card section-space" id="challengeArea">
+                <div class="empty-challenge">
+                    <i class="bi bi-controller"></i>
+                    <h3>Choose Your Challenge</h3>
+                    <p>Pilih salah satu tantangan untuk memulai.</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- SMART ATTENDANCE -->
+        <section class="page" id="attendance">
+
+            <div class="page-heading">
+                <span class="section-label">SMART STUDENT SYSTEM</span>
+                <h2>Smart Attendance</h2>
+                <p>Sistem simulasi pencatatan kehadiran siswa TKJ.</p>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="content-card attendance-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-qr-code-scan"></i>
+                    </div>
+
+                    <h3>QR Attendance</h3>
+
+                    <p>Masukkan kode QR simulasi dari guru.</p>
+
+                    <div class="qr-placeholder">
+                        <i class="bi bi-qr-code"></i>
+                        <span>NETSPACE QR</span>
+                    </div>
+
+                    <input type="text" id="qrCode"
+                        class="form-control custom-input"
+                        placeholder="Masukkan kode QR">
+
+                    <button class="btn-primary-custom w-100 mt-3"
+                        onclick="submitAttendance('QR')">
+                        Konfirmasi QR
+                    </button>
+
+                    <small class="helper-text">
+                        Kode demo: TKJ2026
+                    </small>
+
+                </div>
+
+
+                <div class="content-card attendance-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+
+                    <h3>Manual Attendance</h3>
+
+                    <p>Isi data kehadiran secara manual.</p>
+
+                    <input type="text" id="attendanceName"
+                        class="form-control custom-input mb-3"
+                        placeholder="Nama siswa">
+
+                    <select id="attendanceStatus"
+                        class="form-select custom-input mb-3">
+
+                        <option value="Hadir">Hadir</option>
+                        <option value="Izin">Izin</option>
+                        <option value="Sakit">Sakit</option>
+
+                    </select>
+
+                    <button class="btn-primary-custom w-100"
+                        onclick="submitAttendance('Manual')">
+                        Simpan Kehadiran
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="content-card section-space">
+
+                <div class="section-header">
+                    <h3>Attendance History</h3>
+                    <span id="attendanceCount">0 catatan</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table custom-table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Nama</th>
+                                <th>Metode</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceHistory"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MY PASSPORT -->
+        <section class="page" id="passport">
+
+            <div class="page-heading">
+                <span class="section-label">STUDENT IDENTITY</span>
+                <h2>My Passport</h2>
+                <p>Identitas, perjalanan belajar, dan pencapaianmu.</p>
+            </div>
+
+            <div class="passport-card">
+
+                <div class="passport-top">
+                    <span>NETSPACE STUDENT PASSPORT</span>
+                    <i class="bi bi-cpu"></i>
+                </div>
+
+                <div class="passport-content">
+
+                    <div class="passport-avatar" id="passportAvatar">S</div>
+
+                    <div>
+                        <span class="section-label">STUDENT PROFILE</span>
+                        <h2 id="passportName">Siswa TKJ</h2>
+                        <p id="passportClass">XI TKJ · SMKN 1 GARUT</p>
+                        <span class="level-badge">TKJ EXPLORER</span>
+                    </div>
+
+                </div>
+
+                <div class="passport-bottom">
+                    <span>MY DIGITAL LEARNING JOURNEY</span>
+                    <b>NETSPACE 2026</b>
+                </div>
+
+            </div>
+
+
+            <div class="content-card section-space">
+
+                <h3>Edit Profile</h3>
+
+                <div class="info-grid">
+
+                    <div>
+                        <label class="form-label">Nama siswa</label>
+                        <input type="text" id="editName"
+                            class="form-control custom-input">
+                    </div>
+
+                    <div>
+                        <label class="form-label">Kelas</label>
+                        <select id="editClass" class="form-select custom-input">
+                            <option>X TKJ</option>
+                            <option>XI TKJ</option>
+                            <option>XII TKJ</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button class="btn-primary-custom mt-3"
+                    onclick="saveProfile()">
+                    Simpan Profil
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid section-space">
+
+                <div class="stat-card">
+                    <span class="section-label">TOTAL XP</span>
+                    <h2 id="passportXP">120</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span class="section-label">LEVEL</span>
+                    <h2 id="passportLevel">1</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span class="section-label">MATERI SELESAI</span>
+                    <h2 id="passportCompleted">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="content-card section-space">
+
+                <h3>My Achievements</h3>
+
+                <div class="achievement-grid" id="achievements"></div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 NETSPACE — TKJ Digital Learning Hub | SMKN 1 Garut</p>
+    </footer>
+
+</main>
+
+
+<!-- NOTIFICATION -->
+<div id="toast" class="toast-message"></div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

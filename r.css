@@ -1,0 +1,84 @@
+/* 1. Hapus semua jarak bawaan browser agar pas ke pinggir */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* 2. Wadah Utama Spanduk */
+.hero-box {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Teks ke tengah horizontal */
+    align-items: center;     /* Teks ke tengah vertikal */
+    text-align: center;
+}
+
+/* 3. Pengaturan Foto agar Pas ke Pinggir Tanpa Terpotong */
+.hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Memaksa foto pas ke ujung layar kiri, kanan, atas, bawah */
+    z-index: 1;       /* Berada di lapisan paling bawah */
+}
+
+/* 4. Lapisan Gelap Transparan di Atas Foto */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Menggelapkan foto 40% */
+    z-index: 2;                     /* Berada di atas foto */
+}
+
+/* 5. Konten Teks yang Melayang Paling Atas (Tumpang) */
+.hero-text-content {
+    position: relative;
+    z-index: 3; /* Angka tertinggi agar teks berada di atas foto & overlay */
+    color: white;
+    padding: 0 20px;
+}
+
+.hero-text-content h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Bayangan teks agar makin tegas */
+}
+
+.hero-text-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* 6. Gaya Tombol */
+.hero-btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Efek tombol membesar sedikit saat disentuh */
+}

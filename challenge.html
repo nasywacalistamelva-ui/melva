@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Challenge | NETSPACE</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <span class="brand-icon"><i class="bi bi-cpu"></i></span>
+            NET<span>SPACE</span>
+        </a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                 <li class="nav-item"><a class="nav-link active" href="profil-sekolah.html">Profil Sekolah</a></li>
+                <li class="nav-item"><a class="nav-link" href="profil-tkj.html">Profil TKJ</a></li>
+                <li class="nav-item"><a class="nav-link" href="learning.html">Learning</a></li>
+                <li class="nav-item"><a class="nav-link" href="challenge.html">Challenge</a></li>
+                <li class="nav-item"><a class="nav-link" href="lab.html">Lab</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="creator.html">Creator</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-7">
+                <span class="badge bg-primary mb-3">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    DAILY MISSION
+                </span>
+
+                <h1 class="display-3 fw-bold">
+                    Challenge Your
+                    <span class="text-primary">Tech Skills.</span>
+                </h1>
+
+                <p class="lead">
+                    Asah kemampuanmu melalui tantangan teknologi,
+                    kuis interaktif, dan misi seru seputar dunia TKJ.
+                </p>
+
+                <a href="#challenges" class="btn btn-primary btn-lg mt-3">
+                    Mulai Challenge <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="col-lg-5 text-center">
+                <div class="hero-visual">
+                    <i class="bi bi-trophy-fill"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PLAYER STATS -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4 text-center">
+
+            <div class="col-6 col-lg-3">
+                <div class="feature-card p-4">
+                    <i class="bi bi-star-fill fs-1"></i>
+                    <h3 id="totalPoints">0</h3>
+                    <p>Total Points</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <div class="feature-card p-4">
+                    <i class="bi bi-check-circle-fill fs-1"></i>
+                    <h3 id="completedCount">0</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <div class="feature-card p-4">
+                    <i class="bi bi-fire fs-1"></i>
+                    <h3>1</h3>
+                    <p>Day Streak</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <div class="feature-card p-4">
+                    <i class="bi bi-award-fill fs-1"></i>
+                    <h3 id="badgeCount">0</h3>
+                    <p>Badges</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- PROGRESS -->
+<section class="py-4">
+    <div class="container">
+        <div class="feature-card p-4">
+            <div class="d-flex justify-content-between mb-2">
+                <h5>Daily Progress</h5>
+                <span id="progressText">0%</span>
+            </div>
+
+            <div class="progress" style="height:12px">
+                <div class="progress-bar bg-primary"
+                    id="progressBar" style="width:0%">
+                </div>
+            </div>
+
+            <p class="mt-3 mb-0">
+                Selesaikan semua tantangan untuk mendapatkan poin!
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- CHALLENGES -->
+<section class="py-5" id="challenges">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="text-primary fw-bold">YOUR MISSIONS</span>
+            <h2 class="display-5 fw-bold">Choose Your Challenge</h2>
+            <p>Pilih tantangan dan buktikan kemampuanmu!</p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 h-100">
+                    <i class="bi bi-patch-question-fill fs-1"></i>
+                    <h4 class="mt-3">Daily Quiz</h4>
+                    <p>Uji pengetahuanmu seputar teknologi dan jaringan.</p>
+                    <span class="badge bg-primary mb-3">+100 Points</span>
+                    <button class="btn btn-primary w-100"
+                        onclick="startChallenge('quiz')">
+                        Start Quiz
+                    </button>
+                    <small class="d-block mt-2" id="status-quiz">Belum dikerjakan</small>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 h-100">
+                    <i class="bi bi-cpu-fill fs-1"></i>
+                    <h4 class="mt-3">Hardware Quiz</h4>
+                    <p>Tebak fungsi komponen perangkat komputer.</p>
+                    <span class="badge bg-primary mb-3">+100 Points</span>
+                    <button class="btn btn-primary w-100"
+                        onclick="startChallenge('hardware')">
+                        Start Quiz
+                    </button>
+                    <small class="d-block mt-2" id="status-hardware">Belum dikerjakan</small>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 h-100">
+                    <i class="bi bi-diagram-3-fill fs-1"></i>
+                    <h4 class="mt-3">Network Mission</h4>
+                    <p>Uji pemahaman tentang topologi dan jaringan.</p>
+                    <span class="badge bg-primary mb-3">+100 Points</span>
+                    <button class="btn btn-primary w-100"
+                        onclick="startChallenge('network')">
+                        Start Mission
+                    </button>
+                    <small class="d-block mt-2" id="status-network">Belum dikerjakan</small>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card p-4 h-100">
+                    <i class="bi bi-code-slash fs-1"></i>
+                    <h4 class="mt-3">Coding Mission</h4>
+                    <p>Kenali dasar HTML dan logika pemrograman.</p>
+                    <span class="badge bg-primary mb-3">+100 Points</span>
+                    <button class="btn btn-primary w-100"
+                        onclick="startChallenge('coding')">
+                        Start Mission
+                    </button>
+                    <small class="d-block mt-2" id="status-coding">Belum dikerjakan</small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- QUIZ MODAL -->
+<div class="modal fade" id="challengeModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="quizTitle">Challenge</h5>
+                <button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="d-flex justify-content-between mb-3">
+                    <span id="questionNumber">Question 1</span>
+                    <span id="questionPoints">+25 Points</span>
+                </div>
+
+                <h4 id="questionText"></h4>
+
+                <div id="answerOptions" class="mt-4"></div>
+
+                <div id="quizResult" class="mt-3"></div>
+
+                <button class="btn btn-primary w-100 mt-4"
+                    id="nextQuestion" onclick="nextChallengeQuestion()"
+                    disabled>
+                    Next Question
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- LEADERBOARD -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="text-primary fw-bold">TOP PLAYERS</span>
+            <h2 class="display-5 fw-bold">Leaderboard</h2>
+            <p>Papan peringkat peserta NETSPACE Challenge.</p>
+        </div>
+
+        <div class="feature-card p-4">
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Achievement</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🥇 1</td>
+                            <td>NETSPACE Player 01</td>
+                            <td>Tech Master</td>
+                            <td>1200</td>
+                        </tr>
+                        <tr>
+                            <td>🥈 2</td>
+                            <td>NETSPACE Player 02</td>
+                            <td>Network Expert</td>
+                            <td>950</td>
+                        </tr>
+                        <tr>
+                            <td>🥉 3</td>
+                            <td>NETSPACE Player 03</td>
+                            <td>Code Explorer</td>
+                            <td>800</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <small class="text-secondary">Data leaderboard ini masih berupa contoh.</small>
+        </div>
+
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-primary fw-bold">YOUR COLLECTION</span>
+            <h2 class="display-5 fw-bold">Achievement Badges</h2>
+        </div>
+
+        <div class="row g-4 text-center">
+            <div class="col-4">
+                <div class="feature-card p-3">
+                    <i class="bi bi-lightning-charge fs-1"></i>
+                    <h6 class="mt-2">Fast Learner</h6>
+                    <small>Complete 1 challenge</small>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="feature-card p-3">
+                    <i class="bi bi-cpu fs-1"></i>
+                    <h6 class="mt-2">Hardware Expert</h6>
+                    <small>Complete hardware quiz</small>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="feature-card p-3">
+                    <i class="bi bi-trophy fs-1"></i>
+                    <h6 class="mt-2">Tech Master</h6>
+                    <small>Complete all challenges</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-4 text-center">
+    <div class="container">
+        <h4 class="fw-bold">NETSPACE</h4>
+        <p>TKJ Learning Hub | SMKN 1 GARUT</p>
+        <p class="mb-0">&copy; 2026 NETSPACE. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+<!-- CHALLENGE JAVASCRIPT -->
+<script>
+const challengeData = {
+    quiz: {
+        title: "Daily Quiz",
+        questions: [
+            {
+                question: "Apa kepanjangan dari CPU?",
+                options: ["Central Processing Unit", "Computer Personal Unit", "Central Program Utility", "Control Processing User"],
+                answer: 0
+            },
+            {
+                question: "Perangkat yang digunakan untuk menghubungkan beberapa jaringan adalah?",
+                options: ["Mouse", "Router", "Keyboard", "Monitor"],
+                answer: 1
+            }
+        ]
+    },
+
+    hardware: {
+        title: "Hardware Challenge",
+        questions: [
+            {
+                question: "Komponen yang berfungsi sebagai pusat pemrosesan komputer adalah?",
+                options: ["RAM", "CPU", "SSD", "Power Supply"],
+                answer: 1
+            },
+            {
+                question: "Perangkat penyimpanan data yang menggunakan memori flash adalah?",
+                options: ["SSD", "Monitor", "Keyboard", "Processor"],
+                answer: 0
+            }
+        ]
+    },
+
+    network: {
+        title: "Network Mission",
+        questions: [
+            {
+                question: "Jaringan komputer dalam area terbatas seperti sekolah disebut?",
+                options: ["WAN", "MAN", "LAN", "Internet"],
+                answer: 2
+            },
+            {
+                question: "Topologi yang menggunakan satu perangkat pusat disebut?",
+                options: ["Bus", "Star", "Ring", "Mesh"],
+                answer: 1
+            }
+        ]
+    },
+
+    coding: {
+        title: "Coding Mission",
+        questions: [
+            {
+                question: "Tag HTML untuk membuat judul utama adalah?",
+                options: ["<p>", "<h1>", "<img>", "<br>"],
+                answer: 1
+            },
+            {
+                question: "CSS digunakan untuk?",
+                options: ["Mengatur tampilan halaman", "Menyimpan database", "Menghubungkan internet", "Mengedit hardware"],
+                answer: 0
+            }
+        ]
+    }
+};
+
+let currentChallenge = "";
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+let completedChallenges = JSON.parse(
+    localStorage.getItem("netspaceCompleted") || "[]"
+);
+
+let totalPoints = Number(
+    localStorage.getItem("netspacePoints") || 0
+);
+
+function updateStats() {
+    document.getElementById("totalPoints").textContent = totalPoints;
+    document.getElementById("completedCount").textContent = completedChallenges.length;
+    document.getElementById("badgeCount").textContent = completedChallenges.length;
+
+    let progress = (completedChallenges.length / 4) * 100;
+
+    document.getElementById("progressText").textContent = progress + "%";
+    document.getElementById("progressBar").style.width = progress + "%";
+
+    Object.keys(challengeData).forEach(key => {
+        document.getElementById("status-" + key).textContent =
+            completedChallenges.includes(key)
+            ? "✓ Selesai"
+            : "Belum dikerjakan";
+    });
+}
+
+function startChallenge(type) {
+    if (completedChallenges.includes(type)) {
+        alert("Challenge ini sudah kamu selesaikan!");
+        return;
+    }
+
+    currentChallenge = type;
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("quizTitle").textContent =
+        challengeData[type].title;
+
+    document.getElementById("quizResult").innerHTML = "";
+
+    showQuestion();
+
+    bootstrap.Modal.getOrCreateInstance(
+        document.getElementById("challengeModal")
+    ).show();
+}
+
+function showQuestion() {
+    answered = false;
+
+    const questions = challengeData[currentChallenge].questions;
+    const question = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${currentQuestion + 1} / ${questions.length}`;
+
+    document.getElementById("questionText").textContent =
+        question.question;
+
+    document.getElementById("questionPoints").textContent = "+50 Points";
+
+    document.getElementById("nextQuestion").disabled = true;
+
+    document.getElementById("nextQuestion").textContent =
+        currentQuestion === questions.length - 1
+        ? "Finish Challenge"
+        : "Next Question";
+
+    document.getElementById("quizResult").innerHTML = "";
+
+    const optionsContainer = document.getElementById("answerOptions");
+    optionsContainer.innerHTML = "";
+
+    question.options.forEach((option, index) => {
+        const button = document.createElement("button");
+
+        button.className = "btn btn-outline-primary w-100 text-start mb-2";
+        button.textContent = option;
+
+        button.onclick = () => checkAnswer(index, button);
+
+        optionsContainer.appendChild(button);
+    });
+}
+
+function checkAnswer(selected, button) {
+    if (answered) return;
+
+    answered = true;
+
+    const question =
+        challengeData[currentChallenge].questions[currentQuestion];
+
+    const buttons = document.querySelectorAll("#answerOptions button");
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    if (selected === question.answer) {
+        score += 50;
+        button.classList.replace("btn-outline-primary", "btn-success");
+
+        document.getElementById("quizResult").innerHTML =
+            '<div class="alert alert-success">Benar! Kamu mendapatkan 50 poin.</div>';
+    } else {
+        button.classList.replace("btn-outline-primary", "btn-danger");
+        buttons[question.answer].classList.replace(
+            "btn-outline-primary", "btn-success"
+        );
+
+        document.getElementById("quizResult").innerHTML =
+            '<div class="alert alert-danger">Belum tepat. Pelajari kembali jawabannya!</div>';
+    }
+
+    document.getElementById("nextQuestion").disabled = false;
+}
+
+function nextChallengeQuestion() {
+    const questions = challengeData[currentChallenge].questions;
+
+    if (!answered) return;
+
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+    } else {
+        finishChallenge();
+    }
+}
+
+function finishChallenge() {
+    completedChallenges.push(currentChallenge);
+
+    totalPoints += score;
+
+    localStorage.setItem(
+        "netspaceCompleted",
+        JSON.stringify(completedChallenges)
+    );
+
+    localStorage.setItem("netspacePoints", totalPoints);
+
+    updateStats();
+
+    document.getElementById("quizTitle").textContent =
+        "Challenge Completed!";
+
+    document.getElementById("questionNumber").textContent =
+        "Mission Finished";
+
+    document.getElementById("questionText").textContent =
+        "Selamat! Kamu telah menyelesaikan tantangan.";
+
+    document.getElementById("answerOptions").innerHTML = "";
+
+    document.getElementById("quizResult").innerHTML = `
+        <div class="alert alert-success text-center">
+            <h3><i class="bi bi-trophy-fill"></i></h3>
+            <h4>+${score} Points</h4>
+            <p>Terus tingkatkan kemampuan TKJ-mu!</p>
+        </div>
+    `;
+
+    document.getElementById("nextQuestion").textContent = "Close";
+    document.getElementById("nextQuestion").disabled = false;
+    document.getElementById("nextQuestion").onclick = () => {
+        bootstrap.Modal.getInstance(
+            document.getElementById("challengeModal")
+        ).hide();
+
+        document.getElementById("nextQuestion").onclick =
+            nextChallengeQuestion;
+    };
+}
+
+updateStats();
+</script>
+
+</body>
+</html>

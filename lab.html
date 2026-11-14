@@ -1,0 +1,785 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NETSPACE | Innovation Lab</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+:root {
+--navy:#050b1c;
+--panel:#0b1630;
+--blue:#176bff;
+--cyan:#00e5ff;
+--purple:#9b5cff;
+--gray:#aab7d0;
+--green:#35f5a1;
+}
+
+* {box-sizing:border-box}
+
+body {
+margin:0;
+background:var(--navy);
+color:white;
+font-family:Arial,sans-serif;
+}
+
+.navbar {
+background:#081329;
+border-bottom:1px solid #203654;
+padding:15px 5%;
+}
+
+.navbar-brand {
+color:var(--cyan);
+font-weight:900;
+letter-spacing:2px;
+}
+
+.nav-link {color:var(--gray)}
+.nav-link:hover,.nav-link.active {color:var(--cyan)}
+
+.hero {
+padding:75px 7%;
+background:
+radial-gradient(circle at 80% 20%,#183a70,transparent 35%),
+linear-gradient(120deg,#050b1c,#0b1630);
+}
+
+.tag {
+color:var(--cyan);
+font-size:11px;
+letter-spacing:3px;
+font-weight:bold;
+}
+
+.hero h1 {
+font-size:clamp(36px,6vw,65px);
+font-weight:900;
+margin:18px 0;
+}
+
+.hero h1 span {color:var(--cyan)}
+
+.hero p {
+color:var(--gray);
+max-width:600px;
+line-height:1.8;
+}
+
+.btn-main {
+background:linear-gradient(90deg,var(--blue),var(--purple));
+border:0;
+color:white;
+padding:11px 18px;
+border-radius:8px;
+}
+
+.btn-neon {
+background:var(--cyan);
+color:#03101e;
+border:0;
+padding:10px 16px;
+border-radius:8px;
+font-weight:bold;
+}
+
+.btn-outline-neon {
+border:1px solid var(--cyan);
+color:var(--cyan);
+background:transparent;
+padding:9px 14px;
+border-radius:8px;
+}
+
+.btn-outline-neon:hover {
+background:var(--cyan);
+color:var(--navy);
+}
+
+.section {padding:55px 6%}
+
+.section-title {font-weight:800}
+.section-desc {color:var(--gray)}
+
+.lab-card {
+background:var(--panel);
+border:1px solid #203654;
+border-radius:15px;
+padding:23px;
+height:100%;
+transition:.3s;
+}
+
+.lab-card:hover {
+transform:translateY(-6px);
+border-color:var(--cyan);
+box-shadow:0 10px 30px #00e5ff18;
+}
+
+.lab-icon {
+width:52px;
+height:52px;
+border-radius:13px;
+background:#00e5ff15;
+display:grid;
+place-items:center;
+font-size:25px;
+color:var(--cyan);
+margin-bottom:18px;
+}
+
+.lab-card h5 {font-weight:bold}
+.lab-card p {
+color:var(--gray);
+font-size:13px;
+line-height:1.7;
+}
+
+.lab-card button {
+background:transparent;
+border:1px solid var(--cyan);
+color:var(--cyan);
+border-radius:7px;
+padding:9px 14px;
+}
+
+.lab-card button:hover {
+background:var(--cyan);
+color:var(--navy);
+}
+
+.workspace {
+background:#09142a;
+border:1px solid #23415e;
+border-radius:17px;
+padding:23px;
+min-height:350px;
+}
+
+.output {
+background:#020817;
+border:1px solid #203654;
+padding:14px;
+border-radius:9px;
+color:var(--cyan);
+min-height:48px;
+font-size:13px;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+}
+
+.form-control,.form-select {
+background:#050d20;
+border:1px solid #29405e;
+color:white;
+}
+
+.form-control:focus,.form-select:focus {
+background:#050d20;
+color:white;
+border-color:var(--cyan);
+box-shadow:none;
+}
+
+.form-select option {background:#0b1630}
+
+.lab-view {display:none}
+.lab-view.show {display:block;animation:fade .3s}
+
+@keyframes fade {
+from {opacity:0;transform:translateY(8px)}
+to {opacity:1;transform:translateY(0)}
+}
+
+/* NETWORK */
+.device {
+background:#102343;
+border:1px solid #29405e;
+padding:14px 5px;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+font-size:13px;
+}
+
+.device i {
+display:block;
+font-size:25px;
+color:var(--cyan);
+margin-bottom:5px;
+}
+
+.device:hover {border-color:var(--cyan)}
+
+.network-item {
+background:#102343;
+border:1px solid var(--cyan);
+border-radius:8px;
+padding:10px;
+margin:7px 0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:13px;
+}
+
+/* PC BUILDER */
+.component {
+background:#102343;
+border:1px solid #29405e;
+padding:13px;
+border-radius:9px;
+margin:8px 0;
+cursor:pointer;
+font-size:13px;
+}
+
+.component:hover,.component.selected {
+border-color:var(--cyan);
+background:#12385b;
+}
+
+.pc-case {
+width:110px;
+height:160px;
+border:3px solid #47658b;
+border-radius:12px;
+background:linear-gradient(145deg,#172b49,#071126);
+margin:20px auto;
+display:grid;
+place-items:center;
+font-size:45px;
+color:var(--cyan);
+box-shadow:0 0 25px #00e5ff20;
+}
+
+/* DETECTIVE */
+.case-card {
+background:#102343;
+padding:18px;
+border:1px solid #29405e;
+border-radius:12px;
+}
+
+.answer {
+display:block;
+padding:13px;
+border:1px solid #29405e;
+border-radius:8px;
+margin:9px 0;
+cursor:pointer;
+color:var(--gray);
+}
+
+.answer:hover {
+border-color:var(--cyan);
+color:white;
+}
+
+/* CODE */
+.code-editor {
+min-height:180px;
+font-family:monospace;
+font-size:13px;
+}
+
+.preview {
+width:100%;
+height:220px;
+border:0;
+background:white;
+border-radius:9px;
+}
+
+/* CIRCUIT */
+.circuit {
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+padding:30px 5px;
+background:#030d20;
+border-radius:12px;
+}
+
+.bulb {
+height:70px;
+width:70px;
+border-radius:50%;
+display:grid;
+place-items:center;
+font-size:32px;
+color:#34445c;
+background:#19283e;
+}
+
+.bulb.on {
+color:#ffe56b;
+background:#fff1a0;
+box-shadow:0 0 30px #ffdc45;
+}
+
+.wire {
+width:35px;
+height:4px;
+background:#526780;
+}
+
+.wire.on {background:var(--green)}
+
+/* MISSION */
+.mission {
+padding:16px;
+background:#102343;
+border:1px solid #29405e;
+border-radius:10px;
+margin:10px 0;
+}
+
+footer {
+background:#030817;
+padding:25px;
+text-align:center;
+color:var(--gray);
+border-top:1px solid #203654;
+}
+
+footer span {color:var(--cyan)}
+
+@media(max-width:600px) {
+.hero {padding:55px 6%}
+.section {padding:40px 5%}
+.workspace {padding:15px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container-fluid">
+<a class="navbar-brand" href="index.html">NETSPACE.</a>
+
+<button class="navbar-toggler" type="button"
+data-bs-toggle="collapse" data-bs-target="#nav">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="nav">
+<ul class="navbar-nav ms-auto gap-lg-3">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="learning.html">Learning</a></li>
+<li class="nav-item"><a class="nav-link active" href="lab.html">Lab</a></li>
+<li class="nav-item"><a class="nav-link" href="challenge.html">Challenge</a></li>
+<li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="tag">NETSPACE / INNOVATION CENTER</div>
+
+<h1>Imagine.<br><span>Experiment.</span><br>Innovate.</h1>
+
+<p>
+Masuk ke dunia eksperimen teknologi digital.
+Bangun jaringan, rakit komputer, pecahkan masalah,
+dan ciptakan inovasi teknologi versimu sendiri.
+</p>
+
+<a href="#experiments" class="btn-main text-decoration-none d-inline-block">
+Explore Innovation Lab <i class="bi bi-arrow-right"></i>
+</a>
+</div>
+</section>
+
+<!-- EXPERIMENT MENU -->
+<section class="section" id="experiments">
+<div class="container">
+<div class="tag">EXPERIMENT ZONE</div>
+<h2 class="section-title mt-2">Choose Your Experiment</h2>
+<p class="section-desc mb-4">Pilih laboratorium dan mulai eksperimenmu.</p>
+
+<div class="row g-4">
+
+<div class="col-md-6 col-lg-4">
+<div class="lab-card">
+<div class="lab-icon"><i class="bi bi-diagram-3"></i></div>
+<div class="tag">01 / NETWORKING</div>
+<h5 class="mt-2">Network Architect</h5>
+<p>Bangun jaringan virtual dengan menambahkan PC, switch, dan router.</p>
+<button onclick="openLab('network')">Start Experiment →</button>
+</div>
+</div>
+
+<div class="col-md-6 col-lg-4">
+<div class="lab-card">
+<div class="lab-icon"><i class="bi bi-pc-display"></i></div>
+<div class="tag">02 / HARDWARE</div>
+<h5 class="mt-2">PC Builder</h5>
+<p>Rakit komputer virtual dengan memilih berbagai komponen hardware.</p>
+<button onclick="openLab('pc')">Start Experiment →</button>
+</div>
+</div>
+
+<div class="col-md-6 col-lg-4">
+<div class="lab-card">
+<div class="lab-icon"><i class="bi bi-search"></i></div>
+<div class="tag">03 / TROUBLESHOOTING</div>
+<h5 class="mt-2">Cyber Detective</h5>
+<p>Selidiki kasus kerusakan dan temukan solusi permasalahan jaringan.</p>
+<button onclick="openLab('detective')">Start Experiment →</button>
+</div>
+</div>
+
+<div class="col-md-6 col-lg-4">
+<div class="lab-card">
+<div class="lab-icon"><i class="bi bi-code-slash"></i></div>
+<div class="tag">04 / PROGRAMMING</div>
+<h5 class="mt-2">Code Reactor</h5>
+<p>Buat kode HTML dan lihat hasilnya langsung melalui live preview.</p>
+<button onclick="openLab('code')">Start Experiment →</button>
+</div>
+</div>
+
+<div class="col-md-6 col-lg-4">
+<div class="lab-card">
+<div class="lab-icon"><i class="bi bi-lightbulb"></i></div>
+<div class="tag">05 / ELECTRONICS</div>
+<h5 class="mt-2">Circuit Lab</h5>
+<p>Eksperimen rangkaian elektronik dengan sakelar dan lampu virtual.</p>
+<button onclick="openLab('circuit')">Start Experiment →</button>
+</div>
+</div>
+
+<div class="col-md-6 col-lg-4">
+<div class="lab-card">
+<div class="lab-icon"><i class="bi bi-rocket-takeoff"></i></div>
+<div class="tag">06 / INNOVATION</div>
+<h5 class="mt-2">Innovation Mission</h5>
+<p>Selesaikan misi teknologi menggunakan pengetahuan TKJ.</p>
+<button onclick="openLab('mission')">Start Experiment →</button>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- WORKSPACE -->
+<section class="section pt-0" id="workspace">
+<div class="container">
+<div class="tag">LIVE EXPERIMENT</div>
+<h2 class="section-title mt-2">Innovation Workspace</h2>
+<p class="section-desc">Area eksperimen digital NETSPACE.</p>
+
+<div class="workspace" id="workspaceContent">
+<div class="text-center py-5">
+<i class="bi bi-cpu" style="font-size:55px;color:var(--cyan)"></i>
+<h4 class="mt-3">Laboratory Ready</h4>
+<p class="text-secondary">Pilih salah satu eksperimen untuk memulai.</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<p class="mb-1">© 2026 <span>NETSPACE</span> – TKJ Learning Hub</p>
+<small>SMKN 1 GARUT | Technology for Future</small>
+</footer>
+
+<script>
+const area = document.getElementById("workspaceContent");
+
+let devices = [];
+let parts = [];
+let circuitOn = false;
+
+function openLab(type) {
+let html = "";
+
+if(type === "network") {
+devices = [];
+
+html = `
+<h4><i class="bi bi-diagram-3 text-info"></i> Network Architect</h4>
+<p class="text-secondary">Tambahkan perangkat untuk membangun jaringan virtual.</p>
+
+<div class="row g-2 mb-3">
+<div class="col-4"><div class="device" onclick="addDevice('PC')"><i class="bi bi-pc-display"></i>PC</div></div>
+<div class="col-4"><div class="device" onclick="addDevice('Switch')"><i class="bi bi-hdd-network"></i>Switch</div></div>
+<div class="col-4"><div class="device" onclick="addDevice('Router')"><i class="bi bi-router"></i>Router</div></div>
+</div>
+
+<div class="output" id="networkCanvas">Belum ada perangkat.</div>
+
+<div class="d-flex gap-2 flex-wrap mt-3">
+<button class="btn-neon" onclick="connectNetwork()">Connect Network</button>
+<button class="btn-outline-neon" onclick="resetNetwork()">Reset</button>
+</div>
+<div class="output mt-3" id="networkResult">Status: Menunggu perangkat.</div>
+`;
+}
+
+if(type === "pc") {
+parts = [];
+
+html = `
+<h4><i class="bi bi-pc-display text-info"></i> PC Builder</h4>
+<p class="text-secondary">Pilih komponen untuk merakit komputer virtual.</p>
+
+<div class="row g-3">
+<div class="col-md-6">
+<div class="pc-case"><i class="bi bi-pc"></i></div>
+<div class="text-center muted">VIRTUAL PC CASE</div>
+</div>
+
+<div class="col-md-6">
+<div class="component" onclick="selectPart(this,'CPU')">🧠 Processor</div>
+<div class="component" onclick="selectPart(this,'RAM')">💾 RAM</div>
+<div class="component" onclick="selectPart(this,'SSD')">📀 SSD</div>
+<div class="component" onclick="selectPart(this,'GPU')">🎮 Graphics Card</div>
+<div class="component" onclick="selectPart(this,'Motherboard')">🔌 Motherboard</div>
+<button class="btn-neon mt-3" onclick="assemblePC()">Assemble PC</button>
+<button class="btn-outline-neon mt-3" onclick="resetPC()">Reset</button>
+</div>
+</div>
+<div class="output mt-3" id="pcOutput">Pilih komponen untuk memulai.</div>
+`;
+}
+
+if(type === "detective") {
+html = `
+<h4><i class="bi bi-search text-info"></i> Cyber Detective</h4>
+<p class="text-secondary">Kamu adalah teknisi jaringan. Pecahkan kasus berikut!</p>
+
+<div class="case-card">
+<div class="tag">CASE #001</div>
+<h5 class="mt-2">The Missing Connection</h5>
+<p>Komputer dapat terhubung ke Wi-Fi, tetapi tidak bisa membuka website. Pemeriksaan menunjukkan koneksi Wi-Fi aktif, tetapi alamat IP tidak diperoleh secara otomatis.</p>
+<p class="text-info small">Apa kemungkinan masalah yang perlu diperiksa?</p>
+</div>
+
+<div class="mt-3">
+<label class="answer"><input type="radio" name="case" value="a"> DHCP server atau konfigurasi DHCP bermasalah.</label>
+<label class="answer"><input type="radio" name="case" value="b"> Monitor komputer rusak.</label>
+<label class="answer"><input type="radio" name="case" value="c"> Keyboard tidak berfungsi.</label>
+</div>
+
+<button class="btn-neon mt-2" onclick="solveCase()">Submit Investigation</button>
+<div class="output mt-3" id="caseResult">Menunggu hasil investigasi...</div>
+`;
+}
+
+if(type === "code") {
+html = `
+<h4><i class="bi bi-code-slash text-info"></i> Code Reactor</h4>
+<p class="text-secondary">Tulis HTML dan jalankan hasilnya secara langsung.</p>
+
+<textarea class="form-control code-editor" id="codeInput"><!DOCTYPE html>
+<html>
+<body>
+<h1>Hello NETSPACE!</h1>
+<p>Welcome to my first experiment.</p>
+<button>Explore Technology</button>
+</body>
+</html></textarea>
+
+<button class="btn-neon mt-3" onclick="runCode()"><i class="bi bi-play-fill"></i> Run Experiment</button>
+
+<h6 class="mt-4">LIVE PREVIEW</h6>
+<iframe class="preview mt-2" id="codePreview" sandbox="allow-scripts"></iframe>
+`;
+}
+
+if(type === "circuit") {
+circuitOn = false;
+
+html = `
+<h4><i class="bi bi-lightbulb text-info"></i> Circuit Lab</h4>
+<p class="text-secondary">Eksperimen rangkaian sederhana dengan sakelar virtual.</p>
+
+<div class="circuit">
+<i class="bi bi-battery-charging fs-1 text-info"></i>
+<div class="wire" id="wire1"></div>
+<div class="bulb" id="bulb"><i class="bi bi-lightbulb-fill"></i></div>
+<div class="wire" id="wire2"></div>
+<i class="bi bi-toggle-off fs-1 text-info" id="switchIcon"></i>
+</div>
+
+<div class="text-center">
+<button class="btn-neon" onclick="toggleCircuit()">Turn Switch ON/OFF</button>
+</div>
+
+<div class="output mt-3" id="circuitResult">Circuit Status: OFF</div>
+<p class="small text-secondary mt-2">Simulasi konsep rangkaian listrik sederhana.</p>
+`;
+}
+
+if(type === "mission") {
+html = `
+<h4><i class="bi bi-rocket-takeoff text-info"></i> Innovation Mission</h4>
+<p class="text-secondary">Selesaikan tantangan teknologi untuk mendapatkan skor.</p>
+
+<div class="case-card">
+<div class="tag">MISSION 01</div>
+<h5 class="mt-2">Build a Smart School Network</h5>
+<p>Sebuah sekolah ingin menghubungkan 3 laboratorium komputer. Setiap laboratorium memiliki 10 komputer. Perangkat apa yang paling tepat digunakan untuk menghubungkan komputer dalam setiap LAN?</p>
+</div>
+
+<div class="mt-3">
+<label class="answer"><input type="radio" name="mission" value="a"> Switch</label>
+<label class="answer"><input type="radio" name="mission" value="b"> Printer</label>
+<label class="answer"><input type="radio" name="mission" value="c"> Scanner</label>
+</div>
+
+<button class="btn-neon mt-2" onclick="solveMission()">Complete Mission</button>
+<div class="output mt-3" id="missionResult">Mission waiting...</div>
+`;
+}
+
+area.innerHTML = html;
+area.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+// NETWORK
+function addDevice(name) {
+devices.push(name);
+let text = devices.map((d,i) =>
+(i+1)+". "+d
+).join("\n");
+
+document.getElementById("networkCanvas").textContent =
+"NETWORK DEVICES\n"+text;
+}
+
+function connectNetwork() {
+let result = document.getElementById("networkResult");
+
+let pcs = devices.filter(d=>d==="PC").length;
+let switches = devices.filter(d=>d==="Switch").length;
+let routers = devices.filter(d=>d==="Router").length;
+
+if(pcs < 2 || switches < 1) {
+result.textContent =
+"Jaringan belum ideal. Tambahkan minimal 2 PC dan 1 Switch.";
+return;
+}
+
+result.textContent =
+"CONNECTION SIMULATION SUCCESS!\n"+
+"PC: "+pcs+"\nSwitch: "+switches+
+"\nRouter: "+routers+
+"\nPerangkat berhasil disusun dalam simulasi topologi.";
+}
+
+function resetNetwork() {
+devices=[];
+document.getElementById("networkCanvas").textContent="Belum ada perangkat.";
+document.getElementById("networkResult").textContent="Status: Reset berhasil.";
+}
+
+// PC BUILDER
+function selectPart(element,name) {
+if(!parts.includes(name)) {
+parts.push(name);
+element.classList.add("selected");
+}
+document.getElementById("pcOutput").textContent =
+"Selected Components:\n"+parts.join("\n");
+}
+
+function assemblePC() {
+const result = document.getElementById("pcOutput");
+
+if(parts.length < 5) {
+result.textContent="Komponen belum lengkap. Pilih seluruh 5 komponen.";
+return;
+}
+
+result.textContent =
+"ASSEMBLY COMPLETE!\n\n"+
+"Processor ✓\nRAM ✓\nSSD ✓\nGPU ✓\nMotherboard ✓\n\n"+
+"Virtual PC berhasil dirakit!";
+}
+
+function resetPC() {
+parts=[];
+document.querySelectorAll(".component").forEach(el=>el.classList.remove("selected"));
+document.getElementById("pcOutput").textContent="Komponen telah direset.";
+}
+
+// CYBER DETECTIVE
+function solveCase() {
+const answer=document.querySelector('input[name="case"]:checked');
+const result=document.getElementById("caseResult");
+
+if(!answer) {
+result.textContent="Pilih jawaban terlebih dahulu.";
+return;
+}
+
+result.textContent=answer.value==="a"
+?"INVESTIGATION SUCCESS! DHCP menyediakan konfigurasi IP secara otomatis. Periksa layanan DHCP dan konfigurasi jaringan."
+:"INVESTIGATION FAILED. Coba analisis kembali petunjuk tentang alamat IP.";
+}
+
+// CODE REACTOR
+function runCode() {
+const code=document.getElementById("codeInput").value;
+document.getElementById("codePreview").srcdoc=code;
+}
+
+// CIRCUIT LAB
+function toggleCircuit() {
+circuitOn=!circuitOn;
+
+document.getElementById("bulb").classList.toggle("on",circuitOn);
+document.getElementById("wire1").classList.toggle("on",circuitOn);
+document.getElementById("wire2").classList.toggle("on",circuitOn);
+
+document.getElementById("switchIcon").className=
+circuitOn?"bi bi-toggle-on fs-1 text-success":"bi bi-toggle-off fs-1 text-info";
+
+document.getElementById("circuitResult").textContent=
+circuitOn
+?"CIRCUIT ACTIVE! Lampu virtual menyala. Rangkaian dalam simulasi tertutup."
+:"CIRCUIT INACTIVE! Lampu virtual mati. Rangkaian dalam simulasi terbuka.";
+}
+
+// INNOVATION MISSION
+function solveMission() {
+const answer=document.querySelector('input[name="mission"]:checked');
+const result=document.getElementById("missionResult");
+
+if(!answer) {
+result.textContent="Pilih jawaban terlebih dahulu.";
+return;
+}
+
+result.textContent=answer.value==="a"
+?"MISSION COMPLETED! +100 POINTS. Switch menghubungkan perangkat dalam jaringan LAN."
+:"MISSION FAILED. Pelajari kembali fungsi perangkat jaringan.";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+

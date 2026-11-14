@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NETSPACE | Creator</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+:root {
+    --navy:#050b1c;
+    --navy-light:#0b1630;
+    --blue:#176bff;
+    --cyan:#00e5ff;
+    --purple:#9b5cff;
+    --white:#ffffff;
+    --gray:#aab7d0;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    background:var(--navy);
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+/* NAVBAR */
+
+.navbar {
+    background:rgba(5,11,28,.96);
+    border-bottom:1px solid rgba(0,229,255,.2);
+    padding:18px 5%;
+}
+
+.navbar-brand {
+    color:var(--cyan)!important;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.nav-link {
+    color:white!important;
+    margin-left:15px;
+    transition:.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color:var(--cyan)!important;
+}
+
+/* HERO */
+
+.creator-hero {
+    padding:85px 15px 55px;
+    text-align:center;
+    background:radial-gradient(circle at top,rgba(23,107,255,.2),transparent 60%);
+}
+
+.badge-custom {
+    display:inline-block;
+    background:rgba(23,107,255,.15);
+    color:var(--cyan);
+    border:1px solid rgba(0,229,255,.3);
+    border-radius:30px;
+    padding:10px 20px;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.creator-hero h1 {
+    font-size:clamp(35px,6vw,55px);
+    font-weight:800;
+    margin-top:25px;
+}
+
+.creator-hero h1 span {
+    color:var(--cyan);
+}
+
+.creator-hero p {
+    color:var(--gray);
+}
+
+/* PROFILE */
+
+.profile-section {
+    padding:30px 15px 70px;
+}
+
+.profile-card {
+    background:
+    radial-gradient(circle at top,rgba(23,107,255,.15),transparent 55%),
+    rgba(255,255,255,.04);
+    border:1px solid rgba(0,229,255,.25);
+    border-radius:25px;
+    padding:45px 30px;
+    text-align:center;
+    box-shadow:0 15px 45px rgba(0,0,0,.25);
+    transition:.3s;
+}
+
+.profile-card:hover {
+    border-color:var(--cyan);
+    transform:translateY(-5px);
+}
+
+/* FOTO CREATOR */
+
+.creator-avatar {
+    width:155px;
+    height:155px;
+    margin:0 auto 25px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid var(--cyan);
+    box-shadow:0 0 35px rgba(0,229,255,.3);
+    transition:.3s;
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+
+.creator-avatar:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 45px rgba(0,229,255,.5);
+}
+
+.creator-avatar img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+
+/* PROFILE TEXT */
+
+.profile-label {
+    color:var(--cyan);
+    font-size:12px;
+    letter-spacing:3px;
+    font-weight:700;
+}
+
+.profile-card h2 {
+    font-size:30px;
+    font-weight:800;
+    margin-top:15px;
+}
+
+.profile-role {
+    color:var(--cyan);
+    font-weight:600;
+}
+
+.profile-description {
+    color:var(--gray);
+    max-width:650px;
+    line-height:1.9;
+    margin:25px auto;
+}
+
+/* SKILLS */
+
+.skill-list {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    margin:25px 0;
+}
+
+.skill-list span {
+    padding:10px 18px;
+    background:rgba(23,107,255,.15);
+    color:var(--cyan);
+    border:1px solid rgba(0,229,255,.2);
+    border-radius:30px;
+    font-size:13px;
+    transition:.3s;
+}
+
+.skill-list span:hover {
+    background:var(--blue);
+    color:white;
+    transform:translateY(-4px);
+}
+
+/* PROJECT */
+
+.project-section {
+    padding:40px 15px 70px;
+}
+
+.section-heading {
+    font-weight:800;
+}
+
+.section-heading span {
+    color:var(--cyan);
+}
+
+.project-card {
+    height:100%;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(0,229,255,.18);
+    border-radius:18px;
+    padding:28px;
+    transition:.3s;
+}
+
+.project-card:hover {
+    border-color:var(--cyan);
+    transform:translateY(-5px);
+}
+
+.project-icon {
+    width:55px;
+    height:55px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(23,107,255,.2);
+    color:var(--cyan);
+    font-size:27px;
+    margin-bottom:20px;
+}
+
+.project-card h5 {
+    color:white;
+    font-weight:700;
+}
+
+.project-card p {
+    color:var(--gray);
+    line-height:1.8;
+}
+
+/* PROJECT INFO */
+
+.project-info {
+    background:linear-gradient(135deg,rgba(23,107,255,.18),rgba(155,92,255,.12));
+    border:1px solid rgba(0,229,255,.2);
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+}
+
+.project-info h3 {
+    color:var(--cyan);
+    font-weight:800;
+}
+
+.project-info p {
+    color:var(--gray);
+    line-height:1.8;
+}
+
+/* SOCIAL */
+
+.social-links {
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:25px;
+}
+
+.social-links a {
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cyan);
+    font-size:21px;
+    border:1px solid var(--cyan);
+    border-radius:50%;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.social-links a:hover {
+    background:var(--cyan);
+    color:var(--navy);
+    transform:translateY(-5px);
+}
+
+/* FOOTER */
+
+footer {
+    border-top:1px solid rgba(0,229,255,.15);
+    padding:30px 15px;
+    text-align:center;
+    color:var(--gray);
+}
+
+footer h5 {
+    color:var(--cyan);
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px) {
+    .creator-hero {
+        padding:65px 15px 40px;
+    }
+
+    .profile-card {
+        padding:30px 20px;
+    }
+
+    .profile-card h2 {
+        font-size:25px;
+    }
+
+    .project-info {
+        padding:25px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+
+    <a class="navbar-brand" href="index.html">
+        NETSPACE.
+    </a>
+
+    <button class="navbar-toggler bg-light"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarMenu">
+
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Beranda</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Kontak</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="creator.html">Creator</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="creator-hero">
+
+    <span class="badge-custom">
+        <i class="bi bi-code-slash"></i>
+        BEHIND THE PROJECT
+    </span>
+
+    <h1>
+        Meet The <span>Creator.</span>
+    </h1>
+
+    <p>
+        Get to know the person behind NETSPACE.
+    </p>
+
+</section>
+
+
+<!-- CREATOR PROFILE -->
+
+<section class="profile-section container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9">
+
+            <div class="profile-card">
+
+                <!-- FOTO CREATOR -->
+
+                <div class="creator-avatar">
+                    <img src="foto-creator.jpg"
+                        alt="Foto Creator NETSPACE"
+                        onerror="this.style.display='none';">
+                </div>
+
+                <span class="profile-label">
+                    WEBSITE DEVELOPER
+                </span>
+
+                <h2 id="creatorName">
+                    Nama Creator
+                </h2>
+
+                <h6 class="profile-role">
+                    Student | NETSPACE Project
+                </h6>
+
+                <p class="profile-description">
+                    NETSPACE merupakan website edukasi teknologi
+                    yang dikembangkan untuk mendukung proses
+                    pembelajaran digital siswa Teknik Komputer
+                    dan Jaringan SMKN 1 Garut.
+
+                    Platform ini dirancang dengan menggabungkan
+                    teknologi web, desain modern, dan fitur
+                    interaktif agar pengalaman belajar menjadi
+                    lebih menarik dan informatif.
+                </p>
+
+                <!-- SKILLS -->
+
+                <h5 class="section-heading">
+                    My <span>Skills</span>
+                </h5>
+
+                <div class="skill-list">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>Bootstrap 5</span>
+                    <span>JavaScript</span>
+                    <span>UI/UX Design</span>
+                    <span>Web Development</span>
+                </div>
+
+                <hr style="border-color:rgba(0,229,255,.2);margin:30px 0;">
+
+                <!-- ABOUT PROJECT -->
+
+                <h5 class="text-info fw-bold">
+                    About This Project
+                </h5>
+
+                <p class="profile-description">
+                    NETSPACE – TKJ Learning Hub adalah platform
+                    pembelajaran digital yang menyediakan materi,
+                    informasi sekolah, media pembelajaran,
+                    absensi digital, dan berbagai fitur pendukung
+                    kegiatan siswa.
+                </p>
+
+                <!-- SOCIAL MEDIA -->
+
+                <h5 class="text-info fw-bold mt-4">
+                    Find Me On
+                </h5>
+
+                <div class="social-links">
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="Github">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                    <a href="#" aria-label="Email">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- PROJECT FEATURES -->
+
+<section class="project-section container">
+
+    <div class="text-center mb-5">
+
+        <span class="badge-custom">
+            PROJECT HIGHLIGHTS
+        </span>
+
+        <h2 class="section-heading mt-4">
+            Behind <span>NETSPACE</span>
+        </h2>
+
+        <p class="text-secondary">
+            Teknologi dan fitur dalam pengembangan website.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="project-card">
+
+                <div class="project-icon">
+                    <i class="bi bi-laptop"></i>
+                </div>
+
+                <h5>Modern Website</h5>
+
+                <p>
+                    Tampilan website modern, responsif,
+                    dan mudah digunakan melalui berbagai perangkat.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="project-card">
+
+                <div class="project-icon">
+                    <i class="bi bi-code-square"></i>
+                </div>
+
+                <h5>Web Technology</h5>
+
+                <p>
+                    Dibangun menggunakan HTML5, CSS3,
+                    Bootstrap 5, dan JavaScript.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="project-card">
+
+                <div class="project-icon">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+
+                <h5>Digital Learning</h5>
+
+                <p>
+                    Menghadirkan fitur pendukung pembelajaran
+                    digital untuk siswa jurusan TKJ.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECT INFORMATION -->
+
+<section class="container pb-5">
+
+    <div class="project-info">
+
+        <h3>NETSPACE.</h3>
+
+        <p class="mt-3 mb-0">
+            Technology connects knowledge, innovation creates
+            the future. NETSPACE hadir sebagai ruang belajar
+            digital untuk mengenal dan mengembangkan teknologi.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h5>NETSPACE.</h5>
+
+    <p class="mt-2">
+        TKJ Learning Hub | SMKN 1 GARUT
+    </p>
+
+    <small>
+        © 2026 NETSPACE. All Rights Reserved.
+    </small>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+// CREATOR IDENTITY
+
+const creator = {
+    name: "Nama Creator"
+};
+
+// Tampilkan nama creator
+document.getElementById("creatorName").textContent =
+    creator.name;
+
+// NAVBAR ACTIVE
+const currentPage = "creator.html";
+
+document.querySelectorAll(".nav-link").forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+    }
+});
+
+</script>
+
+</body>
+</html>
+
+
+   

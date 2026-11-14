@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tech News | NETSPACE</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="index.html">
+            <i class="bi bi-router-fill"></i> NETSPACE
+        </a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="profil.html">Profil Sekolah</a></li>
+                <li class="nav-item"><a class="nav-link" href="learning.html">Learning Center</a></li>
+                <li class="nav-item"><a class="nav-link" href="challenge.html">Daily Challenge</a></li>
+                <li class="nav-item"><a class="nav-link" href="lab.html">Network Lab</a></li>
+                <li class="nav-item"><a class="nav-link active" href="news.html">Tech News</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+
+            <div class="col-lg-7">
+                <span class="badge bg-primary mb-3">
+                    <i class="bi bi-newspaper"></i>
+                    NETSPACE INFORMATION CENTER
+                </span>
+
+                <h1 class="display-3 fw-bold">
+                    Discover What's
+                    <span class="text-primary">Next in Tech.</span>
+                </h1>
+
+                <p class="lead">
+                    Temukan informasi, berita teknologi, inovasi digital,
+                    dan perkembangan dunia pendidikan melalui NETSPACE Tech News.
+                </p>
+
+                <a href="#latest-news" class="btn btn-primary btn-lg mt-3">
+                    Explore News <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="col-lg-5 text-center">
+                <div class="hero-visual">
+                    <i class="bi bi-newspaper"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- NEWS STATS -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4 text-center">
+
+            <div class="col-6 col-lg-4">
+                <div class="feature-card p-4">
+                    <i class="bi bi-newspaper fs-1"></i>
+                    <h3 id="newsCount">6</h3>
+                    <p>Published News</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-4">
+                <div class="feature-card p-4">
+                    <i class="bi bi-tags fs-1"></i>
+                    <h3>04</h3>
+                    <p>News Categories</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="feature-card p-4">
+                    <i class="bi bi-globe2 fs-1"></i>
+                    <h3>NETSPACE</h3>
+                    <p>Technology Information</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED NEWS -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="mb-4">
+            <span class="text-primary fw-bold">EDITOR'S PICK</span>
+            <h2 class="display-5 fw-bold">Featured News</h2>
+        </div>
+
+        <div class="feature-card p-4 p-lg-5">
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-6">
+                    <div class="news-feature-image">
+                        <i class="bi bi-cpu-fill"></i>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <span class="badge bg-primary mb-3">TECHNOLOGY</span>
+
+                    <h2 class="fw-bold">
+                        Mengenal Perkembangan Teknologi Jaringan di Era Digital
+                    </h2>
+
+                    <p>
+                        Teknologi jaringan terus berkembang dan menjadi
+                        bagian penting dalam kehidupan modern. Mulai dari
+                        konektivitas internet hingga infrastruktur digital,
+                        semuanya membutuhkan sistem jaringan yang andal.
+                    </p>
+
+                    <small class="text-secondary">
+                        <i class="bi bi-calendar3"></i> Artikel Edukasi NETSPACE
+                    </small>
+
+                    <div class="mt-4">
+                        <button class="btn btn-primary"
+                            onclick="openNews(0)">
+                            Read Full Article
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- LATEST NEWS -->
+<section class="py-5" id="latest-news">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="text-primary fw-bold">LATEST UPDATES</span>
+            <h2 class="display-5 fw-bold">Latest News</h2>
+            <p>Jelajahi berbagai informasi menarik seputar teknologi dan pendidikan.</p>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-7">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+
+                    <input type="text" id="newsSearch"
+                        class="form-control"
+                        placeholder="Cari berita teknologi...">
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY FILTER -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+
+            <button class="btn btn-primary filter-btn active"
+                onclick="filterNews('all', this)">All News</button>
+
+            <button class="btn btn-outline-primary filter-btn"
+                onclick="filterNews('technology', this)">Technology</button>
+
+            <button class="btn btn-outline-primary filter-btn"
+                onclick="filterNews('education', this)">Education</button>
+
+            <button class="btn btn-outline-primary filter-btn"
+                onclick="filterNews('network', this)">Networking</button>
+
+            <button class="btn btn-outline-primary filter-btn"
+                onclick="filterNews('school', this)">School</button>
+
+        </div>
+
+        <!-- NEWS CARDS -->
+        <div class="row g-4" id="newsContainer"></div>
+
+        <div id="emptyNews" class="text-center py-5 d-none">
+            <i class="bi bi-search fs-1"></i>
+            <h4 class="mt-3">Berita tidak ditemukan</h4>
+            <p>Coba gunakan kata kunci lainnya.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- TECHNOLOGY UPDATES -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="text-primary fw-bold">TECH INSIGHT</span>
+            <h2 class="display-5 fw-bold">Technology Updates</h2>
+            <p>Kenali teknologi yang menjadi bagian dari perkembangan dunia digital.</p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="feature-card p-4 h-100">
+                    <i class="bi bi-wifi fs-1"></i>
+                    <h4 class="mt-3">Wi-Fi Technology</h4>
+                    <p>Teknologi jaringan nirkabel yang memungkinkan perangkat saling terhubung tanpa kabel.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card p-4 h-100">
+                    <i class="bi bi-cloud-fill fs-1"></i>
+                    <h4 class="mt-3">Cloud Computing</h4>
+                    <p>Pemanfaatan layanan komputasi melalui internet untuk penyimpanan dan pengolahan data.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card p-4 h-100">
+                    <i class="bi bi-shield-lock-fill fs-1"></i>
+                    <h4 class="mt-3">Cyber Security</h4>
+                    <p>Upaya melindungi sistem, jaringan, dan informasi digital dari ancaman keamanan.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- NEWS MODAL -->
+<div class="modal fade" id="newsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNewsTitle">News Detail</h5>
+
+                <button class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <span class="badge bg-primary mb-3" id="modalNewsCategory"></span>
+
+                <p class="text-secondary" id="modalNewsDate"></p>
+
+                <div id="modalNewsContent"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-outline-primary"
+                    data-bs-dismiss="modal">Close Article</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="py-4 text-center">
+    <div class="container">
+        <h4 class="fw-bold">NETSPACE</h4>
+        <p>TKJ Learning Hub | SMKN 1 GARUT</p>
+        <p class="mb-0">&copy; 2026 NETSPACE. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+<!-- NEWS JAVASCRIPT -->
+<script>
+
+const newsData = [
+    {
+        title: "Mengenal Perkembangan Teknologi Jaringan di Era Digital",
+        category: "technology",
+        label: "Technology",
+        date: "Artikel Edukasi NETSPACE",
+        icon: "bi-cpu-fill",
+        description: "Teknologi jaringan menjadi bagian penting dalam kehidupan modern.",
+        content: `
+            <h5>Perkembangan Teknologi Jaringan</h5>
+            <p>Teknologi jaringan komputer mengalami perkembangan yang
+            sangat pesat. Jaringan memungkinkan perangkat saling bertukar
+            informasi dan berbagi sumber daya.</p>
+
+            <p>Berbagai teknologi seperti fiber optik, Wi-Fi, dan jaringan
+            seluler mendukung konektivitas yang semakin luas.</p>
+
+            <p>Bagi siswa TKJ, memahami perkembangan jaringan merupakan
+            bekal penting untuk mengenal infrastruktur teknologi digital.</p>
+        `
+    },
+    {
+        title: "Mengenal Dasar-Dasar Cyber Security",
+        category: "technology",
+        label: "Technology",
+        date: "Artikel Edukasi NETSPACE",
+        icon: "bi-shield-lock-fill",
+        description: "Pentingnya keamanan digital dalam melindungi data dan informasi.",
+        content: `
+            <h5>Apa Itu Cyber Security?</h5>
+            <p>Cyber security merupakan upaya melindungi sistem komputer,
+            jaringan, dan data dari ancaman digital.</p>
+
+            <p>Pemahaman keamanan digital dapat dimulai dengan penggunaan
+            kata sandi yang kuat, pembaruan sistem, serta kewaspadaan
+            terhadap pesan dan tautan mencurigakan.</p>
+        `
+    },
+    {
+        title: "Pentingnya Kompetensi Digital bagi Siswa SMK",
+        category: "education",
+        label: "Education",
+        date: "Artikel Edukasi NETSPACE",
+        icon: "bi-mortarboard-fill",
+        description: "Keterampilan digital menjadi salah satu bekal penting dalam dunia pendidikan dan pekerjaan.",
+        content: `
+            <h5>Kompetensi Digital</h5>
+            <p>Kompetensi digital mencakup kemampuan menggunakan teknologi
+            secara tepat, kreatif, produktif, dan bertanggung jawab.</p>
+
+            <p>Siswa SMK dapat mengembangkan kompetensi tersebut melalui
+            kegiatan praktik, proyek teknologi, dan pembelajaran berbasis
+            keterampilan.</p>
+        `
+    },
+    {
+        title: "Mengenal Fungsi Router dan Switch",
+        category: "network",
+        label: "Networking",
+        date: "Artikel Edukasi NETSPACE",
+        icon: "bi-router-fill",
+        description: "Dua perangkat penting yang memiliki peran berbeda dalam jaringan komputer.",
+        content: `
+            <h5>Router dan Switch</h5>
+            <p>Router berfungsi menghubungkan jaringan yang berbeda,
+            sedangkan switch menghubungkan perangkat dalam jaringan lokal.</p>
+
+            <p>Keduanya memiliki peran penting dalam membangun infrastruktur
+            jaringan komputer.</p>
+        `
+    },
+    {
+        title: "Mengenal Fiber Optik dalam Infrastruktur Internet",
+        category: "network",
+        label: "Networking",
+        date: "Artikel Edukasi NETSPACE",
+        icon: "bi-ethernet",
+        description: "Teknologi transmisi data menggunakan media serat optik.",
+        content: `
+            <h5>Teknologi Fiber Optik</h5>
+            <p>Fiber optik menggunakan cahaya untuk mengirimkan informasi
+            melalui serat kaca atau plastik khusus.</p>
+
+            <p>Teknologi ini banyak digunakan dalam infrastruktur
+            telekomunikasi karena mampu mendukung transmisi data dengan
+            kapasitas tinggi.</p>
+        `
+    },
+    {
+        title: "Aktivitas Pembelajaran dan Praktik TKJ",
+        category: "school",
+        label: "School",
+        date: "Informasi Sekolah",
+        icon: "bi-building",
+        description: "Informasi seputar kegiatan pembelajaran dan praktik jurusan TKJ.",
+        content: `
+            <h5>Kegiatan Pembelajaran TKJ</h5>
+            <p>Pembelajaran Teknik Komputer dan Jaringan dapat dilakukan
+            melalui teori dan praktik.</p>
+
+            <p>Kegiatan praktik membantu siswa memahami penggunaan
+            perangkat keras, instalasi sistem operasi, dan konsep jaringan.</p>
+
+            <p>Tambahkan dokumentasi serta informasi kegiatan resmi
+            SMKN 1 Garut pada bagian ini.</p>
+        `
+    }
+];
+
+let currentCategory = "all";
+
+function renderNews() {
+    const search = document.getElementById("newsSearch")
+        .value.toLowerCase();
+
+    const container = document.getElementById("newsContainer");
+
+    container.innerHTML = "";
+
+    const filtered = newsData.filter((news) => {
+        const matchCategory =
+            currentCategory === "all" ||
+            news.category === currentCategory;
+
+        const matchSearch =
+            news.title.toLowerCase().includes(search) ||
+            news.description.toLowerCase().includes(search);
+
+        return matchCategory && matchSearch;
+    });
+
+    document.getElementById("newsCount").textContent =
+        newsData.length;
+
+    document.getElementById("emptyNews").classList.toggle(
+        "d-none",
+        filtered.length !== 0
+    );
+
+    filtered.forEach((news) => {
+        const originalIndex = newsData.indexOf(news);
+
+        container.innerHTML += `
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card p-4 h-100 news-card">
+
+                    <div class="news-image mb-3">
+                        <i class="bi ${news.icon}"></i>
+                    </div>
+
+                    <span class="badge bg-primary mb-3">
+                        ${news.label}
+                    </span>
+
+                    <h5 class="fw-bold">${news.title}</h5>
+
+                    <p>${news.description}</p>
+
+                    <small class="text-secondary">
+                        <i class="bi bi-calendar3"></i>
+                        ${news.date}
+                    </small>
+
+                    <button class="btn btn-outline-primary w-100 mt-3"
+                        onclick="openNews(${originalIndex})">
+                        Read More <i class="bi bi-arrow-right"></i>
+                    </button>
+
+                </div>
+            </div>
+        `;
+    });
+}
+
+function filterNews(category, button) {
+    currentCategory = category;
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("btn-primary", "active");
+        btn.classList.add("btn-outline-primary");
+    });
+
+    button.classList.remove("btn-outline-primary");
+    button.classList.add("btn-primary", "active");
+
+    renderNews();
+}
+
+function openNews(index) {
+    const news = newsData[index];
+
+    document.getElementById("modalNewsTitle").textContent =
+        news.title;
+
+    document.getElementById("modalNewsCategory").textContent =
+        news.label;
+
+    document.getElementById("modalNewsDate").textContent =
+        news.date;
+
+    document.getElementById("modalNewsContent").innerHTML =
+        news.content;
+
+    bootstrap.Modal.getOrCreateInstance(
+        document.getElementById("newsModal")
+    ).show();
+}
+
+document.getElementById("newsSearch").addEventListener(
+    "input",
+    renderNews
+);
+
+renderNews();
+
+</script>
+
+</body>
+</html>

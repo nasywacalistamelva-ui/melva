@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NETSPACE | SMKN 1 Garut Digital Universe</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+:root{
+--bg:#050b1c;--panel:#0b1831;--panel2:#102344;
+--blue:#176bff;--cyan:#00e5ff;--purple:#9b5cff;
+--white:#f5f8ff;--muted:#9cacc5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:Arial,sans-serif;overflow-x:hidden}
+button,a{transition:.3s}
+a{text-decoration:none}
+.navbar{background:rgba(5,11,28,.94);backdrop-filter:blur(18px);border-bottom:1px solid #ffffff18;padding:13px 5%;z-index:1000}
+.navbar-brand{font-size:25px;font-weight:900;color:white!important;letter-spacing:2px}
+.navbar-brand span{color:var(--cyan)}
+.nav-link{color:#c3d0e6!important;font-size:13px;margin:0 3px}
+.nav-link:hover,.nav-link.active{color:var(--cyan)!important}
+.page{display:none;min-height:100vh;padding:110px 6% 65px;animation:appear .4s ease}
+.page.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 75% 45%,#176bff35,transparent 35%),radial-gradient(ellipse at 20% 80%,#9b5cff20,transparent 35%)}
+.hero h1{font-size:clamp(38px,6vw,75px);font-weight:900;line-height:1.08}
+.gradient{background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple));-webkit-background-clip:text;color:transparent}
+.hero p,.muted{color:var(--muted);line-height:1.8}
+.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:3px;font-weight:bold}
+.btn-main{background:linear-gradient(100deg,var(--blue),#00bfff);color:white;border:0;padding:12px 23px;border-radius:9px;font-weight:bold}
+.btn-main:hover{transform:translateY(-3px);color:white;box-shadow:0 0 25px #176bff55}
+.btn-ghost{border:1px solid var(--cyan);background:transparent;color:var(--cyan);padding:11px 22px;border-radius:9px}
+.btn-ghost:hover{background:var(--cyan);color:#041020}
+.section-title{font-size:clamp(27px,4vw,39px);font-weight:900;margin:10px 0}
+.glass{background:linear-gradient(145deg,#112344dd,#09152add);border:1px solid #ffffff18;border-radius:18px;padding:25px;backdrop-filter:blur(12px);height:100%;transition:.3s}
+.glass:hover{border-color:var(--cyan);transform:translateY(-5px);box-shadow:0 12px 35px #00e5ff13}
+.glass i.icon{font-size:34px;color:var(--cyan);display:block;margin-bottom:17px}
+.glass h5{font-weight:bold}
+.tag{display:inline-block;background:#176bff25;color:var(--cyan);padding:6px 12px;border-radius:30px;font-size:11px}
+.orb{width:min(330px,75vw);aspect-ratio:1;border-radius:50%;margin:auto;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#176bff35,#9b5cff15 45%,transparent 70%);animation:float 5s ease-in-out infinite}
+.orb:before,.orb:after{content:"";position:absolute;border:1px solid #00e5ff65;border-radius:50%;inset:8%;transform:rotateX(65deg);animation:spin 12s linear infinite}
+.orb:after{inset:18%;transform:rotateY(65deg);animation-direction:reverse}
+.orb i{font-size:130px;color:var(--cyan);filter:drop-shadow(0 0 25px #176bff)}
+@keyframes float{50%{transform:translateY(-18px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+#particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.65}
+.page-content{max-width:1200px;margin:auto}
+.form-control,.form-select{background:#08152c;color:white;border:1px solid #ffffff25;padding:12px}
+.form-control:focus,.form-select:focus{background:#08152c;color:white;border-color:var(--cyan);box-shadow:none}
+.form-control::placeholder{color:#8292ad}
+footer{background:#030817;padding:35px 6%;border-top:1px solid #ffffff15;color:var(--muted);text-align:center}
+.progress{height:9px;background:#263653}
+.progress-bar{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.stat{font-size:32px;color:var(--cyan);font-weight:900}
+.book-cover{height:130px;border-radius:12px;background:linear-gradient(135deg,#176bff,#9b5cff);display:grid;place-items:center;font-size:45px;margin-bottom:18px}
+.terminal{background:#020711;border:1px solid #00e5ff55;border-radius:13px;padding:20px;font-family:monospace;min-height:300px}
+.terminal-output{height:200px;overflow-y:auto;color:#00e5a0;white-space:pre-wrap;font-size:13px}
+.terminal input{background:transparent;color:#00e5a0;border:0;outline:none;width:80%;font-family:monospace}
+.device{background:#112344;border:1px solid #00e5ff77;padding:15px;border-radius:10px;text-align:center}
+.device i{font-size:25px;color:var(--cyan)}
+.creator-img{width:105px;height:105px;border-radius:50%;object-fit:cover;border:3px solid var(--cyan)}
+#toast{position:fixed;bottom:25px;right:20px;background:#102344;border:1px solid var(--cyan);padding:13px 20px;border-radius:10px;display:none;z-index:2000}
+.backtop{position:fixed;bottom:25px;left:20px;border:0;background:var(--blue);color:white;width:42px;height:42px;border-radius:50%;z-index:900}
+@media(max-width:768px){
+.page{padding:100px 5% 45px}
+.hero{text-align:center}
+.orb{margin-top:35px}
+.navbar-collapse{max-height:75vh;overflow:auto}
+}
+</style>
+</head>
+<body>
+    
+    <style>
+:root {
+    --navy: #050b1c;
+    --navy-light: #0b1630;
+    --blue: #176bff;
+    --cyan: #00e5ff;
+    --purple: #9b5cff;
+    --white: #ffffff;
+    --gray: #aab7d0;
+    --glass: rgba(255,255,255,0.055);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+#particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.bg-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: var(--blue);
+    filter: blur(180px);
+    opacity: 0.12;
+    top: 10%;
+    right: -200px;
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* LOADING */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #050b1c;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.6s;
+}
+
+#loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 5px;
+    margin-top: 25px;
+    color: var(--cyan);
+}
+
+.loader-content p {
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 3px;
+}
+
+.loader-orbit {
+    width: 65px;
+    height: 65px;
+    margin: auto;
+    border: 3px solid transparent;
+    border-top-color: var(--cyan);
+    border-bottom-color: var(--purple);
+    border-radius: 50%;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+
+/* HERO */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+   display: none !important;
+    align-items: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 80% 50%, rgba(23,107,255,.15), transparent 35%),
+        linear-gradient(135deg,#050b1c,#07152c);
+}
+
+.hero-section.active {
+    display: flex !important;
+}
+
+.hero-content {
+    padding-top: 100px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border: 1px solid rgba(0,229,255,.3);
+    border-radius: 30px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    background: rgba(0,229,255,.06);
+    margin-bottom: 30px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00ff91;
+    box-shadow: 0 0 10px #00ff91;
+}
+
+.hero-small {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 5px;
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.hero-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(45px,7vw,85px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 15px 0;
+}
+
+.hero-content h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--cyan);
+    text-shadow: 0 0 35px rgba(0,229,255,.2);
+}
+
+.hero-description {
+    font-size: 15px;
+    color: #bdc9dd;
+    margin-top: 20px;
+}
+
+.hero-school {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    line-height: 2;
+}
+
+.hero-school strong {
+    color: var(--cyan);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-primary-custom,
+.btn-outline-custom {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 23px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(90deg,var(--blue),#00a9ff);
+    color: white;
+    border: none;
+    box-shadow: 0 0 25px rgba(23,107,255,.25);
+}
+
+.btn-primary-custom:hover {
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(0,229,255,.4);
+}
+
+.btn-outline-custom {
+    border: 1px solid rgba(0,229,255,.5);
+    color: var(--cyan);
+    background: transparent;
+}
+
+.btn-outline-custom:hover {
+    background: var(--cyan);
+    color: var(--navy);
+}
+
+.hero-stat {
+    display: flex;
+    gap: 40px;
+    margin-top: 65px;
+}
+
+.hero-stat h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cyan);
+    font-size: 25px;
+}
+
+.hero-stat p {
+    font-size: 10px;
+    color: var(--gray);
+}
+
+/* 3D UNIVERSE */
+.universe-container {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    max-width: 100%;
+    margin: 100px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    transition: transform .2s;
+}
+
+.planet {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    color: var(--cyan);
+    background: radial-gradient(circle at 30% 25%,#2469c6,#07152c 70%);
+    box-shadow: 0 0 45px rgba(0,229,255,.4), inset -15px -10px 40px #020816;
+    z-index: 2;
+    animation: float 4s ease-in-out infinite;
+}
+
+.orbit {
+    position: absolute;
+    border: 1px solid rgba(0,229,255,.4);
+    border-radius: 50%;
+    transform: rotateX(70deg);
+}
+
+.orbit-one {
+    width: 260px;
+    height: 260px;
+    animation: rotate 12s linear infinite;
+}
+
+.orbit-two {
+    width: 340px;
+    height: 340px;
+    border-color: rgba(155,92,255,.5);
+    animation: rotate 18s linear infinite reverse;
+}
+
+.orbit-three {
+    width: 410px;
+    height: 410px;
+    border-color: rgba(0,229,255,.2);
+    animation: rotate 25s linear infinite;
+}
+
+.floating-card {
+    position: absolute;
+    z-index: 3;
+    padding: 12px 16px;
+    background: rgba(10,28,55,.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0,229,255,.4);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,229,255,.1);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 10px;
+    color: var(--cyan);
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-card i {
+    font-size: 20px;
+}
+
+.card-one { top: 20px; right: 0; }
+.card-two { bottom: 45px; left: 0; animation-delay: 1s; }
+.card-three { bottom: 0; right: 25px; animation-delay: 2s; }
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-align: center;
+}
+
+.scroll-indicator i {
+    display: block;
+    color: var(--cyan);
+    font-size: 18px;
+    animation: float 1.5s infinite;
+}
+
+/* GENERAL SECTION */
+.section-padding {
+    padding: 110px 0;
+}
+
+.dark-section {
+    background: rgba(10,20,42,.8);
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.section-label {
+    color: var(--cyan);
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.section-heading h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(25px,4vw,38px);
+    margin: 18px 0;
+    font-weight: 700;
+}
+
+.section-heading h2 span,
+.content-title span {
+    color: var(--cyan);
+}
+
+.section-heading p {
+    color: var(--gray);
+    font-size: 13px;
+}
+
+.mini-label {
+    color: var(--cyan);
+    letter-spacing: 3px;
+    font-size: 10px;
+}
+
+.content-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(25px,4vw,36px);
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+.content-description {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--gray);
+}
+</style>
+
+
+
+<nav class="navbar navbar-expand-xl navbar-dark fixed-top">
+<a class="navbar-brand" href="#home" onclick="showPage('home')">NET<span>SPACE.</span></a>
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="nav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link active" href="#home" data-page="home">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="#school" data-page="school">Profil Sekolah</a></li>
+<li class="nav-item"><a class="nav-link" href="#attendance" data-page="attendance">Absensi</a></li>
+<li class="nav-item"><a class="nav-link" href="#learning" data-page="learning">Learning</a></li>
+<li class="nav-item"><a class="nav-link" href="#challenge" data-page="challenge">Challenge</a></li>
+<li class="nav-item"><a class="nav-link" href="#lab" data-page="lab">Lab</a></li>
+<li class="nav-item"><a class="nav-link" href="#news" data-page="news">News</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact" data-page="contact">Contact</a></li>
+<li class="nav-item"><a class="nav-link" href="#creator" data-page="creator">Creator</a></li>
+
+</ul>
+</div>
+</nav>
+
+
+<section id="home " class=" page active hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+
+            <div class="col-lg-7 hero-content">
+                <div class="hero-badge">
+                    <span class="status-dot"></span>
+                    DIGITAL LEARNING PLATFORM
+                </div>
+
+                <p class="hero-small">WELCOME TO THE</p>
+
+                <h1>
+                    DIGITAL<br>
+                    <span>UNIVERSE</span>
+                </h1>
+
+                <p class="hero-description">
+                    Explore Technology, Expand Knowledge,
+                    Build The Future.
+                </p>
+
+                <p class="hero-school">
+                    NETSPACE – TKJ LEARNING HUB<br>
+                    <strong>SMKN 1 GARUT</strong>
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#learning" class="btn-primary-custom">
+                        Start Exploring <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <a href="#profil" class="btn-outline-custom">
+                        About Our School
+                    </a>
+                </div>
+
+                <div class="hero-stat">
+                    <div>
+                        <h3>01</h3>
+                        <p>Digital Learning</p>
+                    </div>
+                    <div>
+                        <h3>02</h3>
+                        <p>Technology</p>
+                    </div>
+                    <div>
+                        <h3>03</h3>
+                        <p>Future Skills</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="universe-container" id="universe">
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <div class="orbit orbit-three"></div>
+
+                    <div class="planet">
+                        <i class="bi bi-cpu"></i>
+                    </div>
+
+                    <div class="floating-card card-one">
+                        <i class="bi bi-wifi"></i>
+                        <span>NETWORK</span>
+                    </div>
+
+                    <div class="floating-card card-two">
+                        <i class="bi bi-code-slash"></i>
+                        <span>CODING</span>
+                    </div>
+
+                    <div class="floating-card card-three">
+                        <i class="bi bi-shield-lock"></i>
+                        <span>SECURITY</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <span>SCROLL TO EXPLORE</span>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+</section>
+
+<!-- SCHOOL -->
+<section class="page" id="school">
+<div class="page-content">
+<span class="eyebrow">ABOUT THE SCHOOL</span>
+<h2 class="section-title">Discover <span class="gradient">SMKN 1 Garut</span></h2>
+<p class="muted">Mengenal identitas, lingkungan, dan informasi sekolah.</p>
+<div class="glass mt-4 text-center">
+<i class="bi bi-building icon"></i>
+<h4>Foto Sampul SMKN 1 Garut</h4>
+<p class="muted">Ganti bagian ini dengan foto resmi sekolah.</p>
+</div>
+<div class="row g-4 mt-2">
+<div class="col-md-6"><div class="glass"><i class="bi bi-clock-history icon"></i><h5>Sejarah Sekolah</h5><p class="muted">[Masukkan sejarah resmi SMKN 1 Garut di sini.]</p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-card-list icon"></i><h5>Identitas Sekolah</h5><p class="muted">Nama: SMKN 1 Garut<br>Alamat: [Masukkan alamat resmi]<br>NPSN: [Masukkan NPSN resmi]<br>Website: [Masukkan website resmi]</p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-eye icon"></i><h5>Visi Sekolah</h5><p class="muted">[Masukkan visi resmi sekolah.]</p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-bullseye icon"></i><h5>Misi Sekolah</h5><p class="muted">[Masukkan misi resmi sekolah.]</p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-mortarboard icon"></i><h5>Tujuan Pendidikan</h5><p class="muted">[Masukkan tujuan pendidikan resmi sekolah.]</p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-pc-display icon"></i><h5>Program Keahlian</h5><p class="muted">[Tambahkan daftar program keahlian resmi sekolah.]</p></div></div>
+</div>
+<h3 class="section-title mt-5">School <span class="gradient">Gallery</span></h3>
+<div class="row g-3">
+<div class="col-md-4"><div class="glass"><i class="bi bi-image icon"></i>Foto lingkungan sekolah</div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-images icon"></i>Dokumentasi kegiatan</div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-camera icon"></i>Fasilitas sekolah</div></div>
+</div>
+</div>
+</section>
+
+<!-- TKJ -->
+<section class="page" id="tkj">
+<div class="page-content">
+<span class="eyebrow">TECHNICAL COMPUTER & NETWORKING</span>
+<h2 class="section-title">Explore <span class="gradient">TKJ Universe</span></h2>
+<p class="muted">Mengenal dunia Teknik Komputer dan Jaringan.</p>
+<div class="row g-4 mt-3">
+<div class="col-md-6"><div class="glass"><i class="bi bi-pc-display-horizontal icon"></i><h5>Apa Itu TKJ?</h5><p class="muted">Teknik Komputer dan Jaringan merupakan bidang keahlian yang mempelajari perangkat komputer, jaringan, sistem operasi, konfigurasi, serta pemeliharaan teknologi informasi.</p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-bullseye icon"></i><h5>Tujuan Pembelajaran</h5><p class="muted">Mengembangkan keterampilan dalam merakit, mengelola, mengonfigurasi, dan memecahkan masalah perangkat serta jaringan komputer.</p></div></div>
+</div>
+<h3 class="section-title mt-5">Core <span class="gradient">Competencies</span></h3>
+<div class="row g-3">
+<div class="col-md-4"><div class="glass"><i class="bi bi-cpu icon"></i><h5>Hardware</h5><p class="muted">Perakitan dan perawatan komputer.</p></div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-router icon"></i><h5>Networking</h5><p class="muted">Konfigurasi dan administrasi jaringan.</p></div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-shield-check icon"></i><h5>Cybersecurity</h5><p class="muted">Dasar keamanan sistem dan jaringan.</p></div></div>
+</div>
+<h3 class="section-title mt-5">Career <span class="gradient">Opportunities</span></h3>
+<div class="row g-3">
+<div class="col-md-4"><div class="glass">Network Administrator</div></div>
+<div class="col-md-4"><div class="glass">IT Support Specialist</div></div>
+<div class="col-md-4"><div class="glass">Computer Technician</div></div>
+<div class="col-md-4"><div class="glass">Network Engineer</div></div>
+<div class="col-md-4"><div class="glass">System Administrator</div></div>
+<div class="col-md-4"><div class="glass">Web Developer</div></div>
+</div>
+<h3 class="section-title mt-5">TKJ Laboratory</h3>
+<div class="glass"><i class="bi bi-hdd-network icon"></i><p class="muted">Tambahkan foto laboratorium, perangkat praktik, dan dokumentasi kegiatan siswa TKJ.</p></div>
+</div>
+</section>
+
+<!-- LEARNING -->
+<section class="page" id="learning">
+<div class="page-content">
+<span class="eyebrow">DIGITAL CLASSROOM</span>
+<h2 class="section-title">Learning <span class="gradient">Center</span></h2>
+<p class="muted">Pusat materi, e-book PDF, dan video pembelajaran.</p>
+<div class="row g-3 mt-3" id="categories"></div>
+<h3 class="section-title mt-5">E-Book Library</h3>
+<p class="muted">Pilih buku berdasarkan tingkat kelas.</p>
+<div class="row g-3">
+<div class="col-md-4"><div class="glass"><div class="book-cover"><i class="bi bi-file-pdf"></i></div><h5>Kelas X</h5><p class="muted">E-book dasar komputer dan jaringan.</p><a href="ebook-kelas-10.pdf" target="_blank" class="btn-ghost">Buka PDF</a></div></div>
+<div class="col-md-4"><div class="glass"><div class="book-cover"><i class="bi bi-file-pdf"></i></div><h5>Kelas XI</h5><p class="muted">E-book konfigurasi dan administrasi jaringan.</p><a href="ebook-kelas-11.pdf" target="_blank" class="btn-ghost">Buka PDF</a></div></div>
+<div class="col-md-4"><div class="glass"><div class="book-cover"><i class="bi bi-file-pdf"></i></div><h5>Kelas XII</h5><p class="muted">E-book materi lanjutan TKJ.</p><a href="ebook-kelas-12.pdf" target="_blank" class="btn-ghost">Buka PDF</a></div></div>
+</div>
+<h3 class="section-title mt-5">YouTube Learning</h3>
+<div class="glass">
+<i class="bi bi-youtube icon"></i>
+<h5>Video Pembelajaran TKJ</h5>
+<p class="muted">Tambahkan video pembelajaran dari YouTube.</p>
+<div class="ratio ratio-16x9 mt-3">
+<iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video TKJ" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CHALLENGE -->
+<section class="page" id="challenge">
+<div class="page-content">
+<span class="eyebrow">DAILY TECH CHALLENGE</span>
+<h2 class="section-title">Test Your <span class="gradient">Knowledge</span></h2>
+<div class="glass mt-4" style="max-width:700px">
+<div class="d-flex justify-content-between"><span class="tag">TKJ QUIZ</span><span id="quizNumber">1/5</span></div>
+<h4 id="question" class="mt-4">Memuat pertanyaan...</h4>
+<div id="answers" class="d-grid gap-2 mt-4"></div>
+<p id="feedback" class="mt-3"></p>
+<button class="btn-main mt-3" onclick="nextQuiz()">Berikutnya</button>
+<p class="muted mt-3" id="quizScore">Skor: 0</p>
+</div>
+<h3 class="section-title mt-5">Tech Mini Games</h3>
+<div class="row g-3">
+<div class="col-md-4"><div class="glass"><i class="bi bi-cpu icon"></i><h5>Tebak Komponen</h5><p class="muted">Apa fungsi RAM?</p><button class="btn-ghost" onclick="miniGame()">Mainkan</button><p id="miniResult" class="mt-3"></p></div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-router icon"></i><h5>Network Quiz</h5><p class="muted">Perangkat penghubung jaringan?</p><button class="btn-ghost" onclick="alert('Jawaban: Router. Router menghubungkan jaringan yang berbeda.')">Jawab</button></div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-lightning icon"></i><h5>Quick Challenge</h5><p class="muted">Uji pengetahuan TKJ kamu.</p><button class="btn-ghost" onclick="showPage('lab')">Mulai Lab</button></div></div>
+</div>
+</div>
+</section>
+
+<!-- LAB -->
+<section class="page" id="lab">
+<div class="page-content">
+<span class="eyebrow">INTERACTIVE TERMINAL</span>
+<h2 class="section-title">Digital <span class="gradient">Laboratory</span></h2>
+<div class="glass mt-4">
+<h5><i class="bi bi-terminal me-2"></i>NETSPACE TERMINAL</h5>
+<div class="terminal mt-3">
+<div class="terminal-output" id="terminalOutput">NETSPACE Terminal v1.0
+Ketik help untuk melihat perintah.
+--------------------------------
+</div>
+<div class="mt-3"><span style="color:var(--cyan)">student@netspace:~$ </span><input id="terminalInput" placeholder="Ketik perintah..." onkeydown="if(event.key==='Enter')runCommand()"><button class="btn-ghost btn-sm" onclick="runCommand()">Run</button></div>
+</div>
+</div>
+<div class="row g-3 mt-3">
+<div class="col-md-6"><div class="glass"><i class="bi bi-diagram-3 icon"></i><h5>Network Topology Simulator</h5><p class="muted">Pilih topologi jaringan yang paling sesuai untuk menghubungkan komputer dalam satu laboratorium.</p><select class="form-select" id="topology"><option value="">Pilih topologi</option><option value="star">Star</option><option value="bus">Bus</option><option value="ring">Ring</option></select><button class="btn-main mt-3" onclick="checkTopology()">Periksa Jawaban</button><p id="topologyResult" class="mt-3"></p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-globe icon"></i><h5>IP Address Simulator</h5><p class="muted">Masukkan contoh alamat IPv4 yang valid.</p><input class="form-control" id="ipAddress" placeholder="192.168.1.10"><button class="btn-main mt-3" onclick="validateIP()">Validasi IP</button><p id="ipFeedback" class="mt-3"></p></div></div>
+</div>
+<div class="glass mt-4">
+<h5>Virtual Network Room</h5>
+<p class="muted">Simulasi hubungan perangkat jaringan.</p>
+<div class="row align-items-center g-3 text-center mt-3">
+<div class="col-12"><div class="device"><i class="bi bi-globe"></i><br>INTERNET</div></div>
+<div class="col-12"><i class="bi bi-arrow-down" style="color:var(--cyan)"></i></div>
+<div class="col-12"><div class="device"><i class="bi bi-router"></i><br>ROUTER</div></div>
+<div class="col-12"><i class="bi bi-arrow-down" style="color:var(--cyan)"></i></div>
+<div class="col-12"><div class="device"><i class="bi bi-diagram-3"></i><br>SWITCH</div></div>
+<div class="col-4"><div class="device"><i class="bi bi-pc-display"></i><br>PC 01</div></div>
+<div class="col-4"><div class="device"><i class="bi bi-pc-display"></i><br>PC 02</div></div>
+<div class="col-4"><div class="device"><i class="bi bi-pc-display"></i><br>PC 03</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NEWS -->
+<section class="page" id="news">
+<div class="page-content">
+<span class="eyebrow">LATEST UPDATES</span>
+<h2 class="section-title">News & <span class="gradient">Information</span></h2>
+<div class="row g-3 mt-3">
+<div class="col-md-4"><div class="glass"><i class="bi bi-newspaper icon"></i><span class="tag">SCHOOL</span><h5 class="mt-3">Informasi Kegiatan Sekolah</h5><p class="muted">Tambahkan informasi kegiatan terbaru SMKN 1 Garut.</p></div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-cpu icon"></i><span class="tag">TECHNOLOGY</span><h5 class="mt-3">Perkembangan Teknologi</h5><p class="muted">Artikel perkembangan teknologi komputer dan jaringan.</p></div></div>
+<div class="col-md-4"><div class="glass"><i class="bi bi-mortarboard icon"></i><span class="tag">EDUCATION</span><h5 class="mt-3">Informasi Pembelajaran</h5><p class="muted">Pengumuman dan informasi pembelajaran TKJ.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="contact">
+<div class="page-content">
+<span class="eyebrow">CONTACT US</span>
+<h2 class="section-title">Connect With <span class="gradient">NETSPACE</span></h2>
+<div class="row g-4 mt-3">
+<div class="col-md-5"><div class="glass"><i class="bi bi-geo-alt icon"></i><h5>Lokasi</h5><p class="muted">SMKN 1 Garut<br>[Alamat resmi sekolah]</p><hr><i class="bi bi-envelope icon"></i><h5>Email</h5><p class="muted">[Email resmi sekolah]</p><hr><i class="bi bi-globe icon"></i><h5>Media Sosial</h5><p class="muted">[Tambahkan akun resmi sekolah]</p></div></div>
+<div class="col-md-7"><div class="glass"><h5>Kirim Pesan</h5><form id="contactForm"><input class="form-control mt-3" placeholder="Nama" required><input type="email" class="form-control mt-3" placeholder="Email" required><textarea class="form-control mt-3" rows="5" placeholder="Pesan kamu..." required></textarea><button class="btn-main mt-3">Kirim</button></form><p id="contactFeedback" class="mt-3"></p></div></div>
+</div>
+</div>
+</section>
+
+<!-- CREATOR -->
+<section class="page" id="creator">
+<div class="page-content">
+<span class="eyebrow">THE PEOPLE BEHIND NETSPACE</span>
+<h2 class="section-title">Meet Our <span class="gradient">Creators</span></h2>
+<p class="muted">Empat orang yang berkolaborasi membangun NETSPACE.</p>
+<div class="row g-4 mt-3">
+<div class="col-md-6 col-lg-3"><div class="glass text-center"><img class="creator-img" src="https://placehold.co/150x150/102344/00e5ff?text=Creator+1" alt="Creator 1"><h5 class="mt-3">Nama Creator 1</h5><span class="tag">DEVELOPER</span><p class="muted mt-3">Deskripsi singkat pembuat pertama.</p></div></div>
+<div class="col-md-6 col-lg-3"><div class="glass text-center"><img class="creator-img" src="https://placehold.co/150x150/102344/00e5ff?text=Creator+2" alt="Creator 2"><h5 class="mt-3">Nama Creator 2</h5><span class="tag">DESIGNER</span><p class="muted mt-3">Deskripsi singkat pembuat kedua.</p></div></div>
+<div class="col-md-6 col-lg-3"><div class="glass text-center"><img class="creator-img" src="https://placehold.co/150x150/102344/00e5ff?text=Creator+3" alt="Creator 3"><h5 class="mt-3">Nama Creator 3</h5><span class="tag">CONTENT</span><p class="muted mt-3">Deskripsi singkat pembuat ketiga.</p></div></div>
+<div class="col-md-6 col-lg-3"><div class="glass text-center"><img class="creator-img" src="https://placehold.co/150x150/102344/00e5ff?text=Creator+4" alt="Creator 4"><h5 class="mt-3">Nama Creator 4</h5><span class="tag">DEVELOPER</span><p class="muted mt-3">Deskripsi singkat pembuat keempat.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- ABSENSI -->
+<section class="page" id="attendance">
+<div class="page-content">
+<span class="eyebrow">DIGITAL ATTENDANCE</span>
+<h2 class="section-title">Student <span class="gradient">Attendance</span></h2>
+<p class="muted">Akses absensi melalui QR Code atau formulir manual.</p>
+<div class="row g-4 mt-3">
+<div class="col-md-6"><div class="glass text-center"><i class="bi bi-qr-code-scan icon"></i><h5>Scan QR Attendance</h5><p class="muted">Pindai QR Code untuk membuka Google Form absensi.</p><div id="qrcode" class="d-flex justify-content-center my-4"></div><p class="muted">QR Code menggunakan tautan Google Form yang kamu masukkan.</p></div></div>
+<div class="col-md-6"><div class="glass"><i class="bi bi-ui-checks icon"></i><h5>Manual Attendance</h5><p class="muted">Isi formulir absensi secara langsung.</p><input class="form-control mt-3" id="formURL" placeholder="Tempel link Google Form"><button class="btn-main mt-3 w-100" onclick="generateQR()">Buat QR Code</button><button class="btn-ghost mt-3 w-100" onclick="openForm()">Buka Google Form</button><p id="qrFeedback" class="mt-3"></p></div></div>
+</div>
+<div class="glass mt-4">
+<h5>Digital Command Center</h5>
+<p class="muted">Ringkasan aktivitas platform NETSPACE.</p>
+<div class="row g-3 mt-2">
+<div class="col-6 col-lg-3"><div class="stat" id="materialCount">6</div><p class="muted">Kategori Materi</p></div>
+<div class="col-6 col-lg-3"><div class="stat">5</div><p class="muted">Quiz Challenge</p></div>
+<div class="col-6 col-lg-3"><div class="stat" id="progressText">0%</div><p class="muted">Progress Quiz</p></div>
+<div class="col-6 col-lg-3"><div class="stat">ONLINE</div><p class="muted">Status Sistem Demo</p></div>
+</div>
+<div class="progress mt-3"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+<p class="muted mt-3">Aktivitas: Jelajahi materi, selesaikan tantangan, dan gunakan simulasi lab.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<h4>NET<span class="gradient">SPACE</span></h4>
+<p>SMKN 1 Garut | Digital Learning Universe - TKJ</p>
+<p>Explore Technology, Expand Knowledge, Build The Future.</p>
+<small>© 2026 NETSPACE. All Rights Reserved.</small>
+</footer>
+
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="bi bi-arrow-up"></i></button>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// MULTI PAGE NAVIGATION
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.querySelectorAll('.nav-link').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+document.getElementById('nav').classList.remove('show');
+history.replaceState(null,'','#'+id);
+window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-page]').forEach(a=>a.addEventListener('click',e=>{
+e.preventDefault();showPage(a.dataset.page);
+}));
+window.addEventListener('load',()=>{
+let id=location.hash.slice(1);
+if(document.getElementById(id)?.classList.contains('page'))showPage(id);
+});
+
+// PARTICLE BACKGROUND
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+let particles=[];
+function resize(){
+canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+particles=Array.from({length:65},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5}));
+}
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach((p,i)=>{
+p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
+ctx.fillStyle='#00e5ff';ctx.fillRect(p.x,p.y,2,2);
+particles.slice(i+1).forEach(q=>{
+let d=Math.hypot(p.x-q.x,p.y-q.y);
+if(d<100){ctx.strokeStyle=`rgba(0,229,255,${1-d/100})`;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+});
+});
+requestAnimationFrame(animate);
+}
+resize();animate();window.addEventListener('resize',resize);
+
+// LEARNING CATEGORIES
+const categories=[
+['Computer Hardware','Mengenal komponen dan perakitan komputer.','bi-cpu'],
+['Computer Networking','Dasar jaringan dan topologi.','bi-diagram-3'],
+['Operating System','Mengenal sistem operasi komputer.','bi-windows'],
+['Network Configuration','Konfigurasi perangkat dan IP.','bi-router'],
+['Cybersecurity','Prinsip keamanan jaringan.','bi-shield-lock'],
+['Programming','Dasar pemrograman dan web.','bi-code-slash']
+];
+document.getElementById('categories').innerHTML=categories.map((c,i)=>`
+<div class="col-md-4"><div class="glass"><i class="bi ${c[2]} icon"></i><h5>${c[0]}</h5><p class="muted">${c[1]}</p><button class="btn-ghost" onclick="openCategory(${i})">Explore <i class="bi bi-arrow-right"></i></button></div></div>
+`).join('');
+function openCategory(i){
+let info=[
+'Hardware adalah komponen fisik komputer seperti motherboard, prosesor, RAM, dan penyimpanan.',
+'Jaringan komputer menghubungkan perangkat untuk berbagi data dan sumber daya.',
+'Sistem operasi mengelola perangkat keras dan perangkat lunak komputer.',
+'Konfigurasi jaringan meliputi pengaturan IP Address, gateway, DNS, dan perangkat jaringan.',
+'Keamanan jaringan bertujuan melindungi data dan sistem dari akses yang tidak sah.',
+'Pemrograman digunakan untuk membuat aplikasi dan website menggunakan bahasa pemrograman.'
+];
+notify(categories[i][0]+': '+info[i]);
+}
+
+// QUIZ
+const quiz=[
+{q:'Komponen yang menyimpan data sementara adalah?',a:['RAM','SSD','Monitor','Keyboard'],c:0},
+{q:'Perangkat penghubung jaringan berbeda adalah?',a:['Switch','Router','Mouse','Printer'],c:1},
+{q:'Kepanjangan LAN adalah?',a:['Local Area Network','Large Access Node','Long Area Network','Local Access Number'],c:0},
+{q:'Berapa bit panjang IPv4?',a:['16','32','64','128'],c:1},
+{q:'Perangkat untuk menghubungkan beberapa komputer dalam LAN?',a:['Switch','Speaker','Scanner','Projector'],c:0}
+];
+let qi=0,score=0,answered=false;
+function renderQuiz(){
+let q=quiz[qi];
+document.getElementById('question').textContent=q.q;
+document.getElementById('quizNumber').textContent=(qi+1)+'/'+quiz.length;
+document.getElementById('answers').innerHTML=q.a.map((a,i)=>`<button class="btn-ghost text-start" onclick="answerQuiz(${i})">${String.fromCharCode(65+i)}. ${a}</button>`).join('');
+document.getElementById('feedback').textContent='';
+document.getElementById('quizScore').textContent='Skor: '+score;
+answered=false;
+}
+function answerQuiz(i){
+if(answered)return;answered=true;
+if(i===quiz[qi].c){score+=20;document.getElementById('feedback').textContent='Benar! Jawaban tepat.';}
+else document.getElementById('feedback').textContent='Belum tepat. Jawaban: '+quiz[qi].a[quiz[qi].c];
+document.getElementById('quizScore').textContent='Skor: '+score;
+document.getElementById('progressText').textContent=Math.round((qi+1)/quiz.length*100)+'%';
+document.getElementById('progressBar').style.width=((qi+1)/quiz.length*100)+'%';
+}
+function nextQuiz(){
+if(!answered){notify('Jawab pertanyaan terlebih dahulu!');return;}
+if(qi===quiz.length-1){
+notify('Quiz selesai! Skor akhir: '+score+'/100');
+qi=0;score=0;
+}else qi++;
+renderQuiz();
+}
+renderQuiz();
+function miniGame(){
+let x=prompt('Apa fungsi RAM?\\nA. Menampilkan gambar\\nB. Menyimpan data sementara\\nC. Mencetak dokumen');
+document.getElementById('miniResult').textContent=x?.toUpperCase()==='B'?'Benar! Hebat!':'Belum tepat. Jawaban: B.';
+}
+
+// TERMINAL
+function runCommand(){
+let input=document.getElementById('terminalInput');
+let out=document.getElementById('terminalOutput');
+let cmd=input.value.trim().toLowerCase();
+if(!cmd)return;
+let response={
+help:'Perintah tersedia: help, about, date, clear, network',
+about:'NETSPACE - Digital Learning Platform SMKN 1 Garut TKJ.',
+date:new Date().toLocaleString('id-ID'),
+network:'Network status: SIMULATION MODE. Router, switch, dan client siap disimulasikan.'
+};
+if(cmd==='clear'){out.textContent='';input.value='';return;}
+out.textContent+='\nstudent@netspace:~$ '+cmd+'\n'+(response[cmd]||'Perintah tidak dikenal. Ketik help untuk bantuan.');
+out.scrollTop=out.scrollHeight;input.value='';
+}
+
+// NETWORK PRACTICE
+function checkTopology(){
+let value=document.getElementById('topology').value;
+let result=document.getElementById('topologyResult');
+if(!value){result.textContent='Pilih topologi terlebih dahulu.';return;}
+result.textContent=value==='star'?'Benar! Topologi star menggunakan perangkat pusat seperti switch.': 'Coba lagi. Untuk simulasi laboratorium dengan switch sebagai pusat, topologi star adalah pilihan yang tepat.';
+}
+function validateIP(){
+let ip=document.getElementById('ipAddress').value.trim();
+let valid=/^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/.test(ip);
+document.getElementById('ipFeedback').textContent=valid?'Format IPv4 valid!':'Format IP tidak valid. Periksa kembali.';
+}
+
+// QR CODE
+let qr=null;
+function generateQR(){
+let url=document.getElementById('formURL').value.trim();
+if(!/^https:\/\/(docs\.google\.com\/forms|forms\.gle)\//i.test(url)){
+document.getElementById('qrFeedback').textContent='Masukkan tautan Google Form yang valid (https).';return;
+}
+document.getElementById('qrcode').innerHTML='';
+qr=new QRCode(document.getElementById('qrcode'),{text:url,width:180,height:180,colorDark:'#050b1c',colorLight:'#ffffff'});
+document.getElementById('qrFeedback').textContent='QR Code berhasil dibuat. Silakan scan untuk membuka formulir.';
+}
+function openForm(){
+let url=document.getElementById('formURL').value.trim();
+if(/^https:\/\/(docs\.google\.com\/forms|forms\.gle)\//i.test(url))window.open(url,'_blank');
+else notify('Masukkan link Google Form yang valid.');
+}
+
+// CONTACT
+document.getElementById('contactForm').addEventListener('submit',e=>{
+e.preventDefault();
+document.getElementById('contactFeedback').textContent='Form berhasil divalidasi. Hubungkan ke layanan backend/email untuk mengirim pesan.';
+e.target.reset();
+});
+
+// NOTIFICATION
+function notify(msg){
+let t=document.getElementById('toast');
+t.textContent=msg;t.style.display='block';
+clearTimeout(window.toastTimer);
+window.toastTimer=setTimeout(()=>t.style.display='none',3500);
+}
+</script>
+</body>
+</html>
